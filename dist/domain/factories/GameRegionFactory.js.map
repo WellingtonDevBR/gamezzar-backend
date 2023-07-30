@@ -1,0 +1,1 @@
+{"version":3,"file":"GameRegionFactory.js","sourceRoot":"./src/","sources":["domain/factories/GameRegionFactory.ts"],"names":[],"mappings":";;;AAAA,uDAAoD;AAEpD,MAAa,iBAAiB;IAC5B,MAAM,CAAC,MAAM,CAAC,MAAc,EAAE,QAAgB;QAC5C,OAAO,uBAAU,CAAC,gBAAgB,CAAC;YACjC,MAAM;YACN,QAAQ;SACT,CAAC,CAAC;IACL,CAAC;CACF;AAPD,8CAOC"}

@@ -1,0 +1,1 @@
+{"version":3,"file":"GamePlatformFactory.js","sourceRoot":"./src/","sources":["domain/factories/GamePlatformFactory.ts"],"names":[],"mappings":";;;AAAA,2DAAwD;AAGxD,MAAa,mBAAmB;IAC5B,MAAM,CAAC,MAAM,CAAC,MAAc,EAAE,UAAkB;QAC5C,OAAO,2BAAY,CAAC,kBAAkB,CAAC;YACvC,MAAM;YACN,UAAU;SACT,CAAC,CAAC;IACP,CAAC;CACJ;AAPD,kDAOC"}

@@ -1,0 +1,1 @@
+{"version":3,"file":"VersionFactory.js","sourceRoot":"./src/","sources":["domain/factories/VersionFactory.ts"],"names":[],"mappings":";;;AAAA,iDAA8C;AAE9C,MAAa,cAAc;IACzB,MAAM,CAAC,MAAM,CAAC,IAAY;QACxB,OAAO,iBAAO,CAAC,aAAa,CAAC,EAAE,IAAI,EAAE,CAAC,CAAC;IACzC,CAAC;CACF;AAJD,wCAIC"}

@@ -1,0 +1,1 @@
+{"version":3,"file":"GamePlatform.js","sourceRoot":"./src/","sources":["domain/entities/GamePlatform.ts"],"names":[],"mappings":";;;AAAA,0DAAuD;AAOvD,MAAa,YAAa,SAAQ,eAAqB;IACrD,YAAoB,KAAoB;QACtC,KAAK,CAAC,KAAK,CAAC,CAAC;IACf,CAAC;IAED,MAAM,CAAC,kBAAkB,CAAC,KAAoB;QAC5C,MAAM,gBAAgB,GAAG,IAAI,YAAY,CAAC,KAAK,CAAC,CAAC;QACjD,OAAO,gBAAgB,CAAC;IAC1B,CAAC;CACF;AATD,oCASC"}

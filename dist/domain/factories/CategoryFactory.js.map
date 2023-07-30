@@ -1,0 +1,1 @@
+{"version":3,"file":"CategoryFactory.js","sourceRoot":"./src/","sources":["domain/factories/CategoryFactory.ts"],"names":[],"mappings":";;;AAAA,mDAAgD;AAEhD,MAAa,eAAe;IAC1B,MAAM,CAAC,MAAM,CAAC,IAAY,EAAE,MAAc;QACxC,OAAO,mBAAQ,CAAC,cAAc,CAAC;YAC7B,IAAI;YACJ,MAAM;SACP,CAAC,CAAC;IACL,CAAC;CACF;AAPD,0CAOC"}

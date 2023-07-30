@@ -1,0 +1,28 @@
+{
+  "compilerOptions": {
+    "target": "ES2020" /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */,
+    "module": "CommonJS" /* Specify what module code is generated. */,
+    "moduleResolution": "node" /* Specify how TypeScript looks up a file from a given module specifier. */,
+    "sourceMap": true,
+    "removeComments": true,
+    "preserveConstEnums": true,
+    "resolveJsonModule": true /* Enable importing .json files. */,
+    "allowJs": true /* Allow JavaScript files to be a part of your program. Use the 'checkJS' option to get errors from these files. */,
+    "outDir": "dist" /* Specify an output folder for all emitted files. */,
+    "sourceRoot": "./src/",
+    "rootDir": "./src/" /* Specify the root folder within your source files. */,
+    "noEmit": false /* Disable emitting files from a compilation. */,
+    "isolatedModules": true /* Ensure that each file can be safely transpiled without relying on other imports. */,
+    "esModuleInterop": true /* Emit additional JavaScript to ease support for importing CommonJS modules. This enables 'allowSyntheticDefaultImports' for type compatibility. */,
+    "forceConsistentCasingInFileNames": true /* Ensure that casing is correct in imports. */,
+    "strict": true /* Enable all strict type-checking options. */,
+    "skipLibCheck": false /* Skip type checking all .d.ts files. */,
+    "typeRoots": ["node_modules/@types", "src/@types"]
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/infra/database/sequelize/config/index.ts",
+    "src/service/axios/index.js",
+    "src/@types/**/*.d.ts"
+  ]
+}

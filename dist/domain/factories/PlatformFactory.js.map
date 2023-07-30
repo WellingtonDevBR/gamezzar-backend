@@ -1,0 +1,1 @@
+{"version":3,"file":"PlatformFactory.js","sourceRoot":"./src/","sources":["domain/factories/PlatformFactory.ts"],"names":[],"mappings":";;;AAAA,mDAAgD;AAEhD,MAAa,eAAe;IAC1B,MAAM,CAAC,MAAM,CACX,IAAY,EACZ,KAAa,EACb,KAAa,EACb,IAAY,EACZ,MAAc;QAEd,OAAO,mBAAQ,CAAC,cAAc,CAAC,EAAE,IAAI,EAAE,KAAK,EAAE,KAAK,EAAE,IAAI,EAAE,MAAM,EAAE,CAAC,CAAC;IACvE,CAAC;CACF;AAVD,0CAUC"}

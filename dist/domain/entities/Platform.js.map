@@ -1,0 +1,1 @@
+{"version":3,"file":"Platform.js","sourceRoot":"./src/","sources":["domain/entities/Platform.ts"],"names":[],"mappings":";;;AAAA,0DAAuD;AAUvD,MAAa,QAAS,SAAQ,eAAiB;IAC7C,YAAoB,KAAgB;QAClC,KAAK,CAAC,KAAK,CAAC,CAAC;IACf,CAAC;IAED,MAAM,CAAC,cAAc,CAAC,KAAgB;QACpC,MAAM,OAAO,GAAG,IAAI,QAAQ,CAAC,KAAK,CAAC,CAAC;QACpC,OAAO,OAAO,CAAC;IACjB,CAAC;CACF;AATD,4BASC"}

@@ -1,0 +1,1 @@
+{"version":3,"file":"ChatFactory.js","sourceRoot":"./src/","sources":["domain/factories/ChatFactory.ts"],"names":[],"mappings":";;;AAAA,2CAAwC;AAExC,MAAa,WAAW;IACtB,MAAM,CAAC,MAAM,CAAC,OAAe,EAAE,OAAe,EAAE,MAAc;QAC5D,OAAO,WAAI,CAAC,UAAU,CAAC;YACrB,OAAO;YACP,OAAO;YACP,MAAM;SACP,CAAC,CAAC;IACL,CAAC;CACF;AARD,kCAQC"}

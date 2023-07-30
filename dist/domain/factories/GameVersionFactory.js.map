@@ -1,0 +1,1 @@
+{"version":3,"file":"GameVersionFactory.js","sourceRoot":"./src/","sources":["domain/factories/GameVersionFactory.ts"],"names":[],"mappings":";;;AAAA,yDAAsD;AAEtD,MAAa,kBAAkB;IAC7B,MAAM,CAAC,MAAM,CAAC,MAAc,EAAE,SAAiB;QAC7C,OAAO,yBAAW,CAAC,iBAAiB,CAAC;YACnC,MAAM;YACN,SAAS;SACV,CAAC,CAAC;IACL,CAAC;CACF;AAPD,gDAOC"}

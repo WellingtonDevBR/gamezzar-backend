@@ -1,0 +1,1 @@
+{"version":3,"file":"Name.js","sourceRoot":"./src/","sources":["domain/value-objects/user/Name.ts"],"names":[],"mappings":";;;AAAA,MAAa,IAAI;IAGf,YAAY,KAAa;QACvB,IAAI,CAAC,KAAK,IAAI,KAAK,CAAC,MAAM,GAAG,CAAC,EAAE;YAC9B,MAAM,IAAI,KAAK,CAAC,0CAA0C,CAAC,CAAC;SAC7D;QACD,IAAI,CAAC,KAAK,GAAG,KAAK,CAAC;IACrB,CAAC;CACF;AATD,oBASC"}

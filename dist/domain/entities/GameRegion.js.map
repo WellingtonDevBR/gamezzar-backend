@@ -1,0 +1,1 @@
+{"version":3,"file":"GameRegion.js","sourceRoot":"./src/","sources":["domain/entities/GameRegion.ts"],"names":[],"mappings":";;;AAAA,0DAAuD;AAOvD,MAAa,UAAW,SAAQ,eAAmB;IACjD,YAAoB,KAAkB;QACpC,KAAK,CAAC,KAAK,CAAC,CAAC;IACf,CAAC;IAED,MAAM,CAAC,gBAAgB,CAAC,KAAkB;QACxC,MAAM,UAAU,GAAG,IAAI,UAAU,CAAC,KAAK,CAAC,CAAC;QACzC,OAAO,UAAU,CAAC;IACpB,CAAC;CACF;AATD,gCASC"}

@@ -1,0 +1,21 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.updateWishlistByIdController = exports.getAllWishlistController = exports.createWishlistController = void 0;
+const CreateWishlistUseCase_1 = require("../../../../application/use-cases/wishlist/create/CreateWishlistUseCase");
+const GetAllWishlistUseCase_1 = require("../../../../application/use-cases/wishlist/get_all/GetAllWishlistUseCase");
+const UpdateWishlistByIdUseCase_1 = require("../../../../application/use-cases/wishlist/update/UpdateWishlistByIdUseCase");
+const CreateWishlistController_1 = require("../../../../infra/controllers/wishlist/create/CreateWishlistController");
+const GetAllWishlistController_1 = require("../../../../infra/controllers/wishlist/get_all/GetAllWishlistController");
+const UpdateWishlistByIdController_1 = require("../../../../infra/controllers/wishlist/update/UpdateWishlistByIdController");
+const SqlServerWishlistRepository_1 = require("../../../../infra/database/sequelize/repositories/wishlist/SqlServerWishlistRepository");
+const sqlServerWishlistRepository = new SqlServerWishlistRepository_1.SqlServerWishlistRepository();
+const createWishlistUseCase = new CreateWishlistUseCase_1.CreateWishlistUseCase(sqlServerWishlistRepository);
+const createWishlistController = new CreateWishlistController_1.CreateWishlistController(createWishlistUseCase);
+exports.createWishlistController = createWishlistController;
+const getAllWishlistUseCase = new GetAllWishlistUseCase_1.GetAllWishlistUseCase(sqlServerWishlistRepository);
+const getAllWishlistController = new GetAllWishlistController_1.GetAllWishlistController(getAllWishlistUseCase);
+exports.getAllWishlistController = getAllWishlistController;
+const updateWishlistByIdUseCase = new UpdateWishlistByIdUseCase_1.UpdateWishlistByIdUseCase(sqlServerWishlistRepository);
+const updateWishlistByIdController = new UpdateWishlistByIdController_1.UpdateWishlistByUserIdController(updateWishlistByIdUseCase);
+exports.updateWishlistByIdController = updateWishlistByIdController;
+//# sourceMappingURL=index.js.map

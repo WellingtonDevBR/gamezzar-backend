@@ -1,0 +1,1 @@
+{"version":3,"file":"RegionFactory.js","sourceRoot":"./src/","sources":["domain/factories/RegionFactory.ts"],"names":[],"mappings":";;;AAAA,+CAA4C;AAE5C,MAAa,aAAa;IACxB,MAAM,CAAC,MAAM,CAAC,IAAY,EAAE,MAAe;QACzC,OAAO,eAAM,CAAC,YAAY,CAAC,EAAE,IAAI,EAAE,MAAM,EAAE,CAAC,CAAC;IAC/C,CAAC;CACF;AAJD,sCAIC"}

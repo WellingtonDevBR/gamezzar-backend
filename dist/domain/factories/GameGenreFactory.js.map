@@ -1,0 +1,1 @@
+{"version":3,"file":"GameGenreFactory.js","sourceRoot":"./src/","sources":["domain/factories/GameGenreFactory.ts"],"names":[],"mappings":";;;AAAA,qDAAkD;AAElD,MAAa,gBAAgB;IAC3B,MAAM,CAAC,MAAM,CAAC,MAAc,EAAE,OAAe;QAC3C,OAAO,qBAAS,CAAC,eAAe,CAAC;YAC/B,MAAM;YACN,OAAO;SACR,CAAC,CAAC;IACL,CAAC;CACF;AAPD,4CAOC"}

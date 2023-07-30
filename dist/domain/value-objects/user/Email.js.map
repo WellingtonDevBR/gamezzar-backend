@@ -1,0 +1,1 @@
+{"version":3,"file":"Email.js","sourceRoot":"./src/","sources":["domain/value-objects/user/Email.ts"],"names":[],"mappings":";;;;;;AAAA,0DAAkC;AAElC,MAAa,KAAK;IAGhB,YAAY,KAAa;QACvB,IAAI,CAAC,mBAAS,CAAC,OAAO,CAAC,KAAK,CAAC,EAAE;YAC7B,MAAM,IAAI,KAAK,CAAC,iCAAiC,CAAC,CAAC;SACpD;QACD,IAAI,CAAC,KAAK,GAAG,KAAK,CAAC;IACrB,CAAC;CAEF;AAVD,sBAUC"}

@@ -1,0 +1,1 @@
+{"version":3,"file":"route.js","sourceRoot":"./src/","sources":["interfaces/rest/routes/chat/route.ts"],"names":[],"mappings":";;;;;;AAAA,sDAA8B;AAC9B,wBAA+C;AAC/C,gDAAqD;AAErD,MAAM,UAAU,GAAG,iBAAO,CAAC,MAAM,EAAE,CAAC;AAM3B,gCAAU;AAJnB,UAAU,CAAC,GAAG,CAAC,GAAG,EAAE,mBAAY,EAAE,CAAC,OAAO,EAAE,QAAQ,EAAE,EAAE;IACtD,6BAA0B,CAAC,MAAM,CAAC,OAAO,EAAE,QAAQ,CAAC,CAAC;AACvD,CAAC,CAAC,CAAC"}

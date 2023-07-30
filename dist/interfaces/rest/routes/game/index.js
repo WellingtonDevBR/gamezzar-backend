@@ -1,0 +1,25 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.getGameByIdController = exports.getAllGamesController = exports.createGameController = void 0;
+const imageConverter_1 = require("../../../../@seedowrk/helper/imageConverter");
+const CreateGameUseCase_1 = require("../../../../application/use-cases/game/create/CreateGameUseCase");
+const GetAllGamesUseCase_1 = require("../../../../application/use-cases/game/get-all/GetAllGamesUseCase");
+const GetGameByIdUseCase_1 = require("../../../../application/use-cases/game/getById/GetGameByIdUseCase");
+const CreateGameController_1 = require("../../../../infra/controllers/game/create/CreateGameController");
+const GetGameByIdController_1 = require("../../../../infra/controllers/game/getById/GetGameByIdController");
+const GetAllGamesController_1 = require("../../../../infra/controllers/game/get-all/GetAllGamesController");
+const SqlServerGameRepository_1 = require("../../../../infra/database/sequelize/repositories/game/SqlServerGameRepository");
+const SqlServerUserGameRepository_1 = require("../../../../infra/database/sequelize/repositories/user_game/SqlServerUserGameRepository");
+const sqlServerGameRepository = new SqlServerGameRepository_1.SqlServerGameRepository();
+const sqlServerUserGameRepository = new SqlServerUserGameRepository_1.SqlServerUserGameRepository();
+const imageToSvgConverter = new imageConverter_1.ImageToPngConverter();
+const createGameUseCase = new CreateGameUseCase_1.CreateGameUseCase(sqlServerGameRepository, imageToSvgConverter);
+const createGameController = new CreateGameController_1.CreateGameController(createGameUseCase);
+exports.createGameController = createGameController;
+const getAllGamesUseCase = new GetAllGamesUseCase_1.GetAllGamesUseCase(sqlServerGameRepository);
+const getAllGamesController = new GetAllGamesController_1.GetAllGamesController(getAllGamesUseCase);
+exports.getAllGamesController = getAllGamesController;
+const getGameByIdUseCase = new GetGameByIdUseCase_1.GetGameByIdUseCase(sqlServerGameRepository, sqlServerUserGameRepository);
+const getGameByIdController = new GetGameByIdController_1.GetGameByIdController(getGameByIdUseCase);
+exports.getGameByIdController = getGameByIdController;
+//# sourceMappingURL=index.js.map

@@ -1,0 +1,1 @@
+{"version":3,"file":"WishlistFactory.js","sourceRoot":"./src/","sources":["domain/factories/WishlistFactory.ts"],"names":[],"mappings":";;;AAAA,mDAAgD;AAEhD,MAAa,eAAe;IAC1B,MAAM,CAAC,MAAM,CACX,MAAc,EACd,MAAc,EACd,aAAqB;QAErB,OAAO,mBAAQ,CAAC,cAAc,CAAC;YAC7B,MAAM;YACN,MAAM;YACN,aAAa;SACd,CAAC,CAAC;IACL,CAAC;CACF;AAZD,0CAYC"}

@@ -1,0 +1,1 @@
+{"version":3,"file":"Version.js","sourceRoot":"./src/","sources":["domain/entities/Version.ts"],"names":[],"mappings":";;;AAAA,0DAAuD;AAOvD,MAAa,OAAQ,SAAQ,eAAgB;IACzC,YAAoB,KAAe;QACjC,KAAK,CAAC,KAAK,CAAC,CAAC;IACf,CAAC;IAED,MAAM,CAAC,aAAa,CAAC,KAAe;QAClC,MAAM,KAAK,GAAG,IAAI,OAAO,CAAC,KAAK,CAAC,CAAC;QACjC,OAAO,KAAK,CAAC;IACf,CAAC;CACF;AATH,0BASG"}

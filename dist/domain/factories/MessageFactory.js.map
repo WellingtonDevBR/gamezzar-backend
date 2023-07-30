@@ -1,0 +1,1 @@
+{"version":3,"file":"MessageFactory.js","sourceRoot":"./src/","sources":["domain/factories/MessageFactory.ts"],"names":[],"mappings":";;;AAAA,iDAA8C;AAG9C,MAAa,cAAc;IACzB,MAAM,CAAC,MAAM,CACX,MAAc,EACd,QAAgB,EAChB,UAAkB,EAClB,OAAe;QAEf,OAAO,iBAAO,CAAC,aAAa,CAAC;YAC3B,MAAM;YACN,QAAQ;YACR,UAAU;YACV,OAAO;SACR,CAAC,CAAC;IACL,CAAC;CACF;AAdD,wCAcC"}
