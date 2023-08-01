@@ -11,6 +11,7 @@ import { wishlistRoutes } from "./interfaces/rest/routes/wishlist/route";
 import { proposeRoutes } from "./interfaces/rest/routes/propose/route";
 import { messageRoutes } from "./interfaces/rest/routes/message/route";
 import { chatRoutes } from "./interfaces/rest/routes/chat/route";
+import { transactionRoutes } from "./interfaces/rest/routes/transaction/routes";
 
 let io: Server; // Add this line
 
@@ -34,6 +35,7 @@ async function startServer() {
     app.use("/api/propose", proposeRoutes);
     app.use("/api/message", messageRoutes);
     app.use("/api/chat", chatRoutes);
+    app.use("/api/transaction", transactionRoutes);
 
     // Create HTTP server and wrap Express app
     const httpServer = http.createServer(app);

@@ -5,18 +5,40 @@ import {
 } from "../../../../../domain/repository/IWishlistRepository";
 import { GameModel } from "../../models/Game";
 import { PlatformModel } from "../../models/Platform";
+import { UserModel } from "../../models/User";
 import { WishlistModel } from "../../models/Wishlist";
 
 export class SqlServerWishlistRepository implements IWishlistRepository {
-  async create(wishlist: Wishlist): Promise<any> {
-    const wishFactory = wishlist.getAllWishlistInformation();
-    return await WishlistModel.create({
-      WishId: wishFactory.id,
-      UserId: wishFactory.userId,
-      GameId: wishFactory.gameId,
-      InterestLevel: wishFactory.interestLevel,
+  async deleteById(wishlistId: string): Promise<any> {
+    return await WishlistModel.destroy({
+      where: {
+        WishlistId: wishlistId,
+      },
     });
   }
+  async create(wishlist: Wishlist): Promise<any> {
+    const wishlistInformation = wishlist.getAllWishlistInformation();
+    return WishlistModel.findOne({
+      where: {
+        UserId: wishlistInformation.userId,
+        GameId: wishlistInformation.gameId,
+      },
+    }).then(function (obj) {
+      // update
+      if (obj)
+        return obj.update({
+          InterestLevel: wishlistInformation.interestLevel,
+        });
+      // insert
+      return WishlistModel.create({
+        WishId: wishlistInformation.id,
+        UserId: wishlistInformation.userId,
+        GameId: wishlistInformation.gameId,
+        InterestLevel: wishlistInformation.interestLevel,
+      });
+    });
+  }
+
   async getAllByUserId(userId: string): Promise<any> {
     const wishlist: any[] = await WishlistModel.findAll({
       raw: true,
@@ -35,11 +57,33 @@ export class SqlServerWishlistRepository implements IWishlistRepository {
             },
           ],
         },
+        {
+          model: UserModel,
+          as: "user",
+        },
       ],
     });
-
     return wishlist;
   }
+
+  async getByGameAndUserId(gameId: string, userId: string): Promise<any> {
+    const wishlist: any = await WishlistModel.findOne({
+      raw: true,
+      nest: true,
+      where: {
+        UserId: userId,
+        GameId: gameId,
+      },
+      include: [
+        {
+          model: GameModel,
+          as: "details", // Use the same alias as defined in the association
+        },
+      ],
+    });
+    return wishlist;
+  }
+
   async updateById(wishlist: IWishListProps): Promise<any> {
     const data = await WishlistModel.update(
       {

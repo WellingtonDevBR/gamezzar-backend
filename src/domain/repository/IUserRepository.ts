@@ -15,5 +15,5 @@ export interface IUserRepository {
   getByUserName(name: string): Promise<any>;
   getAll(): Promise<any>;
   add(user: User): Promise<void>;
-  update(user: User): Promise<void>;
+  update(user: any): Promise<void>;
 }

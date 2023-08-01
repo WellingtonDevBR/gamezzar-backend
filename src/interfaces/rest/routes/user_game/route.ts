@@ -6,6 +6,8 @@ import {
   getAllUserGameController,
   getUserGameByUserIdController,
 } from ".";
+import { SqlServerUserGameRepository } from "../../../../infra/database/sequelize/repositories/user_game/SqlServerUserGameRepository";
+import { convertObjectToSnakeCase } from "../../../../@seedowrk/helper/objectConverter";
 
 const userGameRoutes = express.Router();
 
@@ -26,6 +28,17 @@ userGameRoutes.get(
   authenticate,
   async (request: Request, response: Response) => {
     getAllUserGameByUserIdController.handle(request, response);
+  }
+);
+
+userGameRoutes.get(
+  "/collection/:collectionId",
+  async (request: Request, response: Response) => {
+    const collection = await new SqlServerUserGameRepository().getById(
+      request.params.collectionId
+    );
+    const formattedCollection = convertObjectToSnakeCase(collection);
+    response.status(200).json(formattedCollection);
   }
 );
 

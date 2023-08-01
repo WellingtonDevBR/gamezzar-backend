@@ -30,10 +30,14 @@ module.exports = {
         unique: true
       },
       DOB: {
-        type: Sequelize.DATE,
+        type: Sequelize.STRING,
         allowNull: true,
       },
       Gender: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
+      MobileNumber: {
         type: Sequelize.STRING,
         allowNull: true,
       },

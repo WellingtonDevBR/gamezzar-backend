@@ -11,7 +11,7 @@ module.exports = {
         },
       },
       RegionId: {
-        type: Sequelize.UUID,
+        type: Sequelize.INTEGER,
         references: {
           model: "Region",
           key: "RegionId",

@@ -9,8 +9,9 @@ export function initializePlatformModel(sequelize: Sequelize) {
   PlatformModel.init(
     {
       PlatformId: {
-        type: DataTypes.UUID,
-        defaultValue: DataTypes.UUIDV4,
+        type: DataTypes.INTEGER,
+        autoIncrement: true,
+        allowNull: false,
         primaryKey: true,
       },
       Name: {

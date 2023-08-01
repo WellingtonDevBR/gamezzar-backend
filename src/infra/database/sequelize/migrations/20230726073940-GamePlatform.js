@@ -11,7 +11,7 @@ module.exports = {
         },
       },
       PlatformId: {
-        type: Sequelize.UUID,
+        type: Sequelize.INTEGER,
         references: {
           model: "Platform",
           key: "PlatformId",

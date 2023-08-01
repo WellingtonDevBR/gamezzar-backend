@@ -6,8 +6,11 @@ export class UserModel extends Model {
   public LastName!: string;
   public UserName!: string;
   public Email!: string;
+  public Avatar!: string;
+  public DOB!: string;
+  public Gender!: string;
+  public MobileNumber!: string;
   public Password!: string;
-  public RegistrationDate!: Date;
 }
 
 export function initializeUserModel(sequelize: Sequelize) {
@@ -37,6 +40,18 @@ export function initializeUserModel(sequelize: Sequelize) {
       Email: {
         type: new DataTypes.STRING(128),
         allowNull: false,
+      },
+      DOB: {
+        type: new DataTypes.STRING(8),
+        allowNull: true,
+      },
+      Gender: {
+        type: new DataTypes.STRING(6),
+        allowNull: true,
+      },
+      MobileNumber: {
+        type: new DataTypes.STRING(16),
+        allowNull: true,
       },
       Password: {
         type: new DataTypes.STRING(128),

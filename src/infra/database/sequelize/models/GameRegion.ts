@@ -8,14 +8,14 @@ export class GameRegionModel extends Model {
 export function initializeGameRegionModel(sequelize: Sequelize) {
   GameRegionModel.init(
     {
-      RegionId: {
-        type: DataTypes.UUID,
-        defaultValue: DataTypes.UUIDV4,
-        primaryKey: true,
-      },
       GameId: {
+        primaryKey: true,
         type: DataTypes.UUID,
         defaultValue: DataTypes.UUIDV4,
+      },
+      RegionId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
       },
     },
     {

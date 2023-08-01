@@ -6,6 +6,13 @@ import { UserModel } from "../../models/User";
 import { GameModel } from "../../models/Game";
 
 export class SqlServerProposeRepository implements IProposeRepository {
+  async deleteById(proposeId: string): Promise<any> {
+    return await ProposeModel.destroy({
+      where: {
+        ProposeId: proposeId,
+      },
+    });
+  }
   async create(data: Propose): Promise<any> {
     const propose = data.getAllProposeInformation();
     const createdPropose = await ProposeModel.create({

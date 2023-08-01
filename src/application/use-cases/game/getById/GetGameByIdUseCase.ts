@@ -18,6 +18,7 @@ export class GetGameByIdUseCase
   async execute(request: GetGameByIdInput): Promise<GetGameByIdOutput> {
     const game = await this.gameRepository.getById(request.id);
     const userGame = await this.userGameRepository.getByGameId(request.id);
+    console.log(userGame);
     const formattedGame = convertObjectToSnakeCase(game);
     const formattedUserGame = convertObjectToSnakeCase(userGame);
     return {

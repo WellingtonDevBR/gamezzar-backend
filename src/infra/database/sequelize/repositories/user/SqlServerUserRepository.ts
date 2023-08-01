@@ -4,6 +4,12 @@ import {
 } from "../../../../../domain/repository/IUserRepository";
 import { User } from "../../../../../domain/entities/User";
 import { UserModel } from "../../models/User";
+import { AddressModel } from "../../models/Address";
+import { PreferenceModel } from "../../models/Preference";
+import { UserGameModel } from "../../models/UserGame";
+import { GameModel } from "../../models/Game";
+import { RegionModel } from "../../models/Region";
+import { PlatformModel } from "../../models/Platform";
 
 export class SqlServerUserRepository implements IUserRepository {
   async save(user: User): Promise<ICreateUserDataOutput> {
@@ -43,9 +49,16 @@ export class SqlServerUserRepository implements IUserRepository {
   async getByEmail(email: string): Promise<any> {
     const user = await UserModel.findOne({
       raw: true,
+      nest: true,
       where: {
         Email: email,
       },
+      include: [
+        {
+          model: AddressModel,
+          as: "address",
+        },
+      ],
     });
     return user;
   }
@@ -53,27 +66,105 @@ export class SqlServerUserRepository implements IUserRepository {
   async getById(id: string): Promise<any> {
     return await UserModel.findOne({
       raw: true,
+      nest: true,
       where: {
         UserID: id,
       },
+      include: [
+        {
+          model: AddressModel,
+          as: "address",
+        },
+      ],
     });
   }
 
   async getByUserName(name: string): Promise<any> {
-    const user = await UserModel.findOne({
-      raw: true,
-      where: {
-        UserName: name,
-      },
-    });
-    return user;
+    try {
+      const user = await UserModel.findOne({
+        where: {
+          UserName: name,
+        },
+        attributes: [
+          "FirstName",
+          "LastName",
+          "UserName",
+          "Avatar",
+          "CreatedAt",
+        ],
+        include: [
+          {
+            model: PreferenceModel,
+            as: "preference",
+            attributes: [
+              "StatusMessage",
+              "ShipmentInPerson",
+              "ShipmentPostal",
+              "ShipmentCourier",
+            ],
+          },
+          {
+            model: AddressModel,
+            as: "address",
+            attributes: ["Address"],
+          },
+          {
+            model: UserGameModel,
+            as: "collections",
+            include: [
+              {
+                model: GameModel,
+                as: "item",
+              },
+              {
+                model: RegionModel,
+                as: "hasregion",
+              },
+              {
+                model: PlatformModel,
+                as: "hasplatform",
+              },
+            ],
+          },
+        ],
+      });
+      return user;
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   async add(user: User): Promise<void> {
     throw new Error("Method not implemented.");
   }
 
-  async update(user: User): Promise<void> {
-    throw new Error("Method not implemented.");
+  async update(user: any): Promise<void> {
+    UserModel.update(
+      {
+        Gender: user.gender,
+        DOB: user.dob,
+        MobileNumber: user.mobileNumber,
+        Password: user.password ? user.password : user.Password,
+        Email: user.email ? user.email : user.Email,
+      },
+      {
+        where: {
+          UserID: user.UserId,
+        },
+      }
+    );
+  }
+
+  async updateAvatar(userId: string, avatarPath: string): Promise<any> {
+    UserModel.update(
+      {
+        Avatar: avatarPath,
+      },
+      {
+        where: {
+          UserID: userId,
+        },
+      }
+    );
   }
 }

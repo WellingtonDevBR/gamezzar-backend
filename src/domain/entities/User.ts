@@ -11,6 +11,8 @@ interface UserProps {
   username: Username;
   avatar?: string;
   email: Email;
+  dob?: string
+  mobileNumber?: string;
   password: Password;
 }
 

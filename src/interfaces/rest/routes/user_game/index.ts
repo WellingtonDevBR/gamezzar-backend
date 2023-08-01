@@ -26,7 +26,6 @@ const createUserGameUseCase = new CreateUserGameUseCase(
   platformRepository,
   editionRepository
 );
-
 const createUserGameController = new CreateUserGameController(
   createUserGameUseCase
 );

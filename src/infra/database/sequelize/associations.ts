@@ -2,8 +2,10 @@ import { AddressModel } from "./models/Address";
 import { EditionModel } from "./models/Edition";
 import { GameModel } from "./models/Game";
 import { PlatformModel } from "./models/Platform";
+import { PreferenceModel } from "./models/Preference";
 import { ProposeModel } from "./models/Propose";
 import { RegionModel } from "./models/Region";
+import { TransactionModel } from "./models/Transaction";
 import { UserModel } from "./models/User";
 import { UserGameModel } from "./models/UserGame";
 import { WishlistModel } from "./models/Wishlist";
@@ -14,6 +16,31 @@ export function setupAssociations() {
     through: "Inventory",
     foreignKey: "UserId",
     as: "game",
+  });
+
+  UserModel.hasMany(UserGameModel, {
+    foreignKey: "UserId",
+    as: "collections",
+  });
+
+  UserModel.hasOne(AddressModel, {
+    foreignKey: "UserId",
+    as: "address",
+  });
+
+  UserModel.hasOne(PreferenceModel, {
+    foreignKey: "UserId",
+    as: "preference",
+  });
+
+  UserModel.hasMany(UserGameModel, {
+    foreignKey: "UserId",
+    as: "inventory",
+  });
+
+  UserModel.hasMany(WishlistModel, {
+    foreignKey: "UserId",
+    as: "wishlist",
   });
 
   // ProposeModel
@@ -75,7 +102,17 @@ export function setupAssociations() {
 
   UserGameModel.belongsTo(GameModel, {
     foreignKey: "GameId",
-    as: "details", // This represents one Game instance related to the Inventory
+    as: "item", // This represents one Game instance related to the Inventory
+  });
+
+  UserGameModel.belongsTo(RegionModel, {
+    foreignKey: "RegionId",
+    as: "hasregion",
+  });
+
+  UserGameModel.belongsTo(PlatformModel, {
+    foreignKey: "PlatformId",
+    as: "hasplatform",
   });
 
   // AddressModel
@@ -88,6 +125,11 @@ export function setupAssociations() {
   WishlistModel.belongsTo(GameModel, {
     foreignKey: "GameId", // Use the correct foreign key that relates WishlistModel to GameModel
     as: "details", // This alias should match the alias used in the include query
+  });
+
+  WishlistModel.belongsTo(UserModel, {
+    foreignKey: "UserId",
+    as: "user",
   });
 
   // PlatformModel
@@ -108,5 +150,32 @@ export function setupAssociations() {
     through: "Games_Edition",
     foreignKey: "EditionId",
     as: "edition",
+  });
+
+  // PreferenceModel
+  PreferenceModel.belongsTo(UserModel, {
+    foreignKey: "UserId",
+    as: "user",
+  });
+
+  // TransactionModel
+  TransactionModel.belongsTo(UserModel, {
+    foreignKey: "SenderId",
+    as: "sender",
+  });
+
+  TransactionModel.belongsTo(UserModel, {
+    foreignKey: "ReceiverId",
+    as: "receiver",
+  });
+
+  TransactionModel.belongsTo(GameModel, {
+    foreignKey: "SenderGameId",
+    as: "sender_game",
+  });
+
+  TransactionModel.belongsTo(GameModel, {
+    foreignKey: "ReceiverGameId",
+    as: "receiver_game",
   });
 }

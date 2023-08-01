@@ -114,8 +114,9 @@ module.exports = {
         </div>
         <div>
         <b>Cyberpunk 2077: </b>
-        <span>
-        </span>
+<span>
+In addition to its compelling gameplay, Cyberpunk 2077 features a dynamic open-world environment that reacts to your actions and decisions. Whether you choose to forge alliances with various factions or go against the grain, the consequences of your choices ripple through the city, influencing the lives of its inhabitants and altering the game's outcome. The freedom to explore Night City at your own pace adds another layer of immersion, revealing hidden secrets, side quests, and unexpected encounters that make each playthrough unique.
+</span>
         </div>`,
           ReleaseDate: new Date("2020-12-10"),
           Producer: "CD Projekt Red",

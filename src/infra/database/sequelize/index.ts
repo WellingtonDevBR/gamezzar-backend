@@ -16,6 +16,8 @@ import { initializeProposeModel } from "./models/Propose";
 import { initializeGameEditionModel } from "./models/GameEdition";
 import { initializeChatModel } from "./models/Chat";
 import { initializeMessageModel } from "./models/Message";
+import { initializePreferenceModel } from "./models/Preference";
+import { initializeTransactionModel } from "./models/Transaction";
 
 initializeUserModel(sequelize);
 initializeGameModel(sequelize);
@@ -33,6 +35,8 @@ initializeGameEditionModel(sequelize);
 initializeProposeModel(sequelize);
 initializeChatModel(sequelize);
 initializeMessageModel(sequelize);
+initializePreferenceModel(sequelize);
+initializeTransactionModel(sequelize);
 
 setupAssociations();
 

@@ -18,14 +18,14 @@ module.exports = {
         },
       },
       PlatformId: {
-        type: Sequelize.UUID,
+        type: Sequelize.INTEGER,
         references: {
           model: "Platform",
           key: "PlatformId",
         },
       },
       RegionId: {
-        type: Sequelize.UUID,
+        type: Sequelize.INTEGER,
         references: {
           model: "Region",
           key: "RegionId",
