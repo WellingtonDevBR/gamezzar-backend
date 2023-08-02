@@ -21,13 +21,17 @@ proposeRoutes.get(
   }
 );
 
-proposeRoutes.delete("/:id", async (request: Request, response: Response) => {
-  // deleteProposeController.handle(request, response);
-  const deletedPropose = await new SqlServerProposeRepository().deleteById(
-    request.params.id
-  );
+proposeRoutes.delete(
+  "/:id",
+  authenticate,
+  async (request: Request, response: Response) => {
+    // deleteProposeController.handle(request, response);
+    const deletedPropose = await new SqlServerProposeRepository().deleteById(
+      request.params.id
+    );
 
-  response.status(200).json(deletedPropose);
-});
+    response.status(200).json(deletedPropose);
+  }
+);
 
 export { proposeRoutes };

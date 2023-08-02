@@ -5,15 +5,15 @@ export class CreateFeedbackController {
   constructor(private createFeedbackUseCase: CreateFeedbackUseCase) {}
   async handle(request: Request, response: Response): Promise<Response> {
     try {
-      const { transactionId, rating, comment, giverId, receiverId, userId } =
+      const { transaction_id, score, comment, giver_id, receiver_id, userId } =
         request.body;
 
       const result = await this.createFeedbackUseCase.execute({
-        transactionId,
-        rating,
+        transactionId: transaction_id,
+        rating: score,
         comment,
         giverId: userId,
-        receiverId,
+        receiverId: receiver_id,
       });
 
       return response.status(201).json(result);

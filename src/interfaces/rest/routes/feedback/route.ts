@@ -1,9 +1,10 @@
 import express from "express";
 import { createFeedbackController } from ".";
+import { authenticate } from "../../middleware/auth";
 
 const feedbackRoutes = express.Router();
 
-feedbackRoutes.post("/", async (request, response) => {
+feedbackRoutes.post("/", authenticate, async (request, response) => {
   createFeedbackController.handle(request, response);
 });
 

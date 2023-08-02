@@ -6,7 +6,8 @@ export class SqlServerFeedbackRepository implements IFeedbackRepository {
   async create(feedback: Feedback): Promise<any> {
     const feedbackInformation = feedback.getAllFeedbackInformation();
     return await FeedbackModel.create({
-      TransactionId: feedback.getId(),
+      FeedbackId: feedback.getId(),
+      TransactionId: feedbackInformation.transactionId,
       Rating: feedbackInformation.rating,
       Comment: feedbackInformation.comment,
       GiverId: feedbackInformation.giverId,

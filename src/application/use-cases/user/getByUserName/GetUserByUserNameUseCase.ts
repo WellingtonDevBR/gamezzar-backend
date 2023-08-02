@@ -39,20 +39,21 @@ export class GetUserByUserNameUseCase implements UseCase<Input, Output> {
   constructor(private usersRepository: IUserRepository) {}
   async execute(request: Input): Promise<Output> {
     const user = await this.usersRepository.getByUserName(request.userName);
+
     const userFormmat: Output = {
       first_name: user.FirstName,
       last_name: user.LastName,
       user_name: user.UserName,
       avatar: user.Avatar,
-      created_at: user.RegistrationDate,
+      created_at: user.dataValues.CreatedAt,
       preference: {
-        status_message: user.get().preference.StatusMessage,
-        shipment_in_person: user.get().preference.ShipmentInPerson,
-        shipment_by_postal: user.get().preference.ShipmentPostal,
-        shipment_by_courier: user.get().preference.ShipmentCourier,
+        status_message: user.get().preference?.StatusMessage,
+        shipment_in_person: user.get().preference?.ShipmentInPerson,
+        shipment_by_postal: user.get().preference?.ShipmentPostal,
+        shipment_by_courier: user.get().preference?.ShipmentCourier,
       },
       address: {
-        address: user.get().address.Address,
+        address: user.get().address?.Address,
       },
       collections: user.get().collections.map((game: any) => {
         return {

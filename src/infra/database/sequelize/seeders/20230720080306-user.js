@@ -18,6 +18,17 @@ module.exports = {
           CreatedAt: new Date(),
         },
         {
+          UserId: "bfeddaf0-a068-447a-9df5-b6252da20ba6",
+          FirstName: "Wellington",
+          LastName: "Santos",
+          UserName: "Well-Santos",
+          Email: "wellington@gmail.com",
+          Password: "31051986",
+          Avatar: "avatar3.svg",
+          UpdatedAt: new Date(),
+          CreatedAt: new Date(),
+        },
+        {
           UserId: "1c09f106-742b-48c2-9eb5-56e35e31b8ff",
           FirstName: "Jane",
           LastName: "Smith",
