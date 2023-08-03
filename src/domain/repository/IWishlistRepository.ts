@@ -9,6 +9,7 @@ export interface IWishListProps {
 export interface IWishlistRepository {
     create(wishlist: Wishlist): Promise<any>;
     getAllByUserId(userId: string): Promise<any>;
+    getAllByUserName(userName: string): Promise<any>;
     updateById(wishlist: IWishListProps): Promise<any>;
     deleteById(wishlistId: string): Promise<any>;
 }

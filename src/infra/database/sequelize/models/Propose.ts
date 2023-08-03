@@ -2,10 +2,10 @@ import { DataTypes, Model, Sequelize } from "sequelize";
 
 export class ProposeModel extends Model {
   public ProposeId!: string;
-  public InterestedGameId!: string;
-  public OwnerGameId!: string;
-  public InterestedUserId!: string;
-  public OwnerUserId!: string;
+  public BidderGameId!: string;
+  public ReceiverGameId!: string;
+  public BidderId!: string;
+  public ReceiverId!: string;
   public Status!: string;
 }
 
@@ -17,21 +17,37 @@ export function initializeProposeModel(sequelize: Sequelize) {
         defaultValue: DataTypes.UUIDV4,
         primaryKey: true,
       },
-      InterestedGameId: {
+      BidderId: {
         type: new DataTypes.STRING(128),
         allowNull: false,
+        references: {
+          model: "User",
+          key: "UserId",
+        },
       },
-      OwnerGameId: {
+      ReceiverId: {
         type: new DataTypes.STRING(128),
         allowNull: false,
+        references: {
+          model: "User",
+          key: "UserId",
+        },
       },
-      InterestedUserId: {
+      BidderGameId: {
         type: new DataTypes.STRING(128),
         allowNull: false,
+        references: {
+          model: "Game",
+          key: "Gameid",
+        },
       },
-      OwnerUserId: {
+      ReceiverGameId: {
         type: new DataTypes.STRING(128),
         allowNull: false,
+        references: {
+          model: "Game",
+          key: "Gameid",
+        },
       },
       Status: {
         type: new DataTypes.STRING(128),

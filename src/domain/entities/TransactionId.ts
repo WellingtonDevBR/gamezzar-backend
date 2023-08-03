@@ -2,9 +2,9 @@ import { Entity } from "../../@seedowrk/domain/entity";
 
 interface TransactionProps {
   id?: string;
-  senderId: string;
+  bidderId: string;
   receiverId: string;
-  senderGameId: string;
+  bidderGameId: string;
   receiverGameId: string;
   status: string;
 }

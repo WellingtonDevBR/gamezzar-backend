@@ -1,5 +1,5 @@
 import express from "express";
-import { createFeedbackController } from ".";
+import { createFeedbackController, findAllFeedbackByUserNameController } from ".";
 import { authenticate } from "../../middleware/auth";
 
 const feedbackRoutes = express.Router();

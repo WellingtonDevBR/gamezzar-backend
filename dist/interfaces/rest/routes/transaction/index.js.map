@@ -1,0 +1,1 @@
+{"version":3,"file":"index.js","sourceRoot":"./src/","sources":["interfaces/rest/routes/transaction/index.ts"],"names":[],"mappings":";;;AAAA,4HAAyH;AACzH,8HAA2H;AAC3H,iJAA8I;AAE9I,MAAM,qBAAqB,GAAG,IAAI,+DAA8B,EAAE,CAAC;AAGnE,MAAM,wBAAwB,GAAG,IAAI,mDAAwB,CAC3D,qBAAqB,CACtB,CAAC;AACF,MAAM,2BAA2B,GAAG,IAAI,yDAA2B,CACjE,wBAAwB,CACzB,CAAC;AAEO,kEAA2B"}

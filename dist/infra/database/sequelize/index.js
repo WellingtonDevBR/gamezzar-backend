@@ -20,6 +20,9 @@ const Propose_1 = require("./models/Propose");
 const GameEdition_1 = require("./models/GameEdition");
 const Chat_1 = require("./models/Chat");
 const Message_1 = require("./models/Message");
+const Preference_1 = require("./models/Preference");
+const Transaction_1 = require("./models/Transaction");
+const Feedback_1 = require("./models/Feedback");
 (0, User_1.initializeUserModel)(config_1.sequelize);
 (0, Game_1.initializeGameModel)(config_1.sequelize);
 (0, Address_1.initializeAddressModel)(config_1.sequelize);
@@ -36,5 +39,8 @@ const Message_1 = require("./models/Message");
 (0, Propose_1.initializeProposeModel)(config_1.sequelize);
 (0, Chat_1.initializeChatModel)(config_1.sequelize);
 (0, Message_1.initializeMessageModel)(config_1.sequelize);
+(0, Preference_1.initializePreferenceModel)(config_1.sequelize);
+(0, Transaction_1.initializeTransactionModel)(config_1.sequelize);
+(0, Feedback_1.initializeFeedbackModel)(config_1.sequelize);
 (0, associations_1.setupAssociations)();
 //# sourceMappingURL=index.js.map

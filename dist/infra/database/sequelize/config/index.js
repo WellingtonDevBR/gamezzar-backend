@@ -9,6 +9,7 @@ exports.sequelize = new sequelize_1.Sequelize({
     password: "31051986",
     host: "gamezzardb.cf9phn6m1ojz.us-east-2.rds.amazonaws.com",
     port: 1433,
+    logging: true,
     define: {
         freezeTableName: true,
     },

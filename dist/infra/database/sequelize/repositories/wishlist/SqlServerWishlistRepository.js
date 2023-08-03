@@ -3,15 +3,34 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.SqlServerWishlistRepository = void 0;
 const Game_1 = require("../../models/Game");
 const Platform_1 = require("../../models/Platform");
+const User_1 = require("../../models/User");
 const Wishlist_1 = require("../../models/Wishlist");
 class SqlServerWishlistRepository {
+    async deleteById(wishlistId) {
+        return await Wishlist_1.WishlistModel.destroy({
+            where: {
+                WishlistId: wishlistId,
+            },
+        });
+    }
     async create(wishlist) {
-        const wishFactory = wishlist.getAllWishlistInformation();
-        return await Wishlist_1.WishlistModel.create({
-            WishId: wishFactory.id,
-            UserId: wishFactory.userId,
-            GameId: wishFactory.gameId,
-            InterestLevel: wishFactory.interestLevel,
+        const wishlistInformation = wishlist.getAllWishlistInformation();
+        return Wishlist_1.WishlistModel.findOne({
+            where: {
+                UserId: wishlistInformation.userId,
+                GameId: wishlistInformation.gameId,
+            },
+        }).then(function (obj) {
+            if (obj)
+                return obj.update({
+                    InterestLevel: wishlistInformation.interestLevel,
+                });
+            return Wishlist_1.WishlistModel.create({
+                WishId: wishlistInformation.id,
+                UserId: wishlistInformation.userId,
+                GameId: wishlistInformation.gameId,
+                InterestLevel: wishlistInformation.interestLevel,
+            });
         });
     }
     async getAllByUserId(userId) {
@@ -31,6 +50,27 @@ class SqlServerWishlistRepository {
                             as: "platform",
                         },
                     ],
+                },
+                {
+                    model: User_1.UserModel,
+                    as: "user",
+                },
+            ],
+        });
+        return wishlist;
+    }
+    async getByGameAndUserId(gameId, userId) {
+        const wishlist = await Wishlist_1.WishlistModel.findOne({
+            raw: true,
+            nest: true,
+            where: {
+                UserId: userId,
+                GameId: gameId,
+            },
+            include: [
+                {
+                    model: Game_1.GameModel,
+                    as: "details",
                 },
             ],
         });

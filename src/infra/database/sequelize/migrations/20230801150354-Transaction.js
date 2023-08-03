@@ -8,7 +8,7 @@ module.exports = {
         type: DataTypes.UUID,
         defaultValue: DataTypes.UUIDV4,
       },
-      SenderId: {
+      BidderId: {
         type: DataTypes.UUID,
         allowNull: false,
         references: {
@@ -24,7 +24,7 @@ module.exports = {
           key: "UserId",
         },
       },
-      SenderGameId: {
+      BidderGameId: {
         type: DataTypes.UUID,
         allowNull: false,
         references: {

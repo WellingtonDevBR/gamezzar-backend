@@ -14,6 +14,9 @@ import multer from "multer";
 import AWS from "aws-sdk";
 import { SqlServerUserRepository } from "../../../../infra/database/sequelize/repositories/user/SqlServerUserRepository";
 import { generateRandomString } from "../../../../@seedowrk/helper/constants";
+import { AwsClient } from "../../../../@seedowrk/service/aws-client";
+import { findAllFeedbackByUserNameController } from "../feedback";
+import { getAllWishlistByUserNameController } from "../wishlist";
 require("dotenv").config();
 var googleMapsClient = require("@google/maps").createClient({
   key: "AIzaSyA0N_z3NOgTc8FOeKCAhoWah-GzoExKFDE",
@@ -28,6 +31,15 @@ userRoutes.post("/login", async (request: Request, response: Response) => {
 userRoutes.post("/register", async (request: Request, response: Response) => {
   createUserController.handle(request, response);
 });
+
+userRoutes.get("/:username/feedbacks", async (request, response) => {
+  findAllFeedbackByUserNameController.handle(request, response);
+});
+
+userRoutes.get("/:username/wishlist", async (request, response) => {
+  getAllWishlistByUserNameController.handle(request, response);
+});
+
 
 userRoutes.get(
   "/compare-locations/:origin/:destination",
@@ -82,6 +94,8 @@ userRoutes.post(
   upload.single("file"),
   authenticate,
   async (request: Request, response: Response) => {
+    const awsClient = new AwsClient();
+    const secrets = await awsClient.fetchSecrets("gamezzar-backend");
     const imagePath = generateRandomString(10);
     try {
       if (!request.file) {
@@ -92,7 +106,7 @@ userRoutes.post(
       const { userId } = request.body; // Assume user is available in request after authentication
       // Setting up S3 upload parameters
       const params: any = {
-        Bucket: process.env.AWS_BUCKET_NAME,
+        Bucket: secrets.AWS_S3_BUCKET_NAME,
         Key: `avatar/${imagePath}`, // User id as folder name
         Body: file.buffer,
         ContentType: file.mimetype,

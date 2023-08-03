@@ -2,6 +2,12 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.SqlServerUserRepository = void 0;
 const User_1 = require("../../models/User");
+const Address_1 = require("../../models/Address");
+const Preference_1 = require("../../models/Preference");
+const UserGame_1 = require("../../models/UserGame");
+const Game_1 = require("../../models/Game");
+const Region_1 = require("../../models/Region");
+const Platform_1 = require("../../models/Platform");
 class SqlServerUserRepository {
     async save(user) {
         const { id, firstName, lastName, username, avatar, email, password } = user.getAllUserInformation();
@@ -36,34 +42,113 @@ class SqlServerUserRepository {
     async getByEmail(email) {
         const user = await User_1.UserModel.findOne({
             raw: true,
+            nest: true,
             where: {
                 Email: email,
             },
+            include: [
+                {
+                    model: Address_1.AddressModel,
+                    as: "address",
+                },
+            ],
         });
         return user;
     }
     async getById(id) {
         return await User_1.UserModel.findOne({
             raw: true,
+            nest: true,
             where: {
                 UserID: id,
             },
+            include: [
+                {
+                    model: Address_1.AddressModel,
+                    as: "address",
+                },
+            ],
         });
     }
     async getByUserName(name) {
-        const user = await User_1.UserModel.findOne({
-            raw: true,
-            where: {
-                UserName: name,
-            },
-        });
-        return user;
+        try {
+            const user = await User_1.UserModel.findOne({
+                where: {
+                    UserName: name,
+                },
+                attributes: [
+                    "FirstName",
+                    "LastName",
+                    "UserName",
+                    "Avatar",
+                    "CreatedAt",
+                ],
+                include: [
+                    {
+                        model: Preference_1.PreferenceModel,
+                        as: "preference",
+                        attributes: [
+                            "StatusMessage",
+                            "ShipmentInPerson",
+                            "ShipmentPostal",
+                            "ShipmentCourier",
+                        ],
+                    },
+                    {
+                        model: Address_1.AddressModel,
+                        as: "address",
+                        attributes: ["Address"],
+                    },
+                    {
+                        model: UserGame_1.UserGameModel,
+                        as: "collections",
+                        include: [
+                            {
+                                model: Game_1.GameModel,
+                                as: "item",
+                            },
+                            {
+                                model: Region_1.RegionModel,
+                                as: "hasregion",
+                            },
+                            {
+                                model: Platform_1.PlatformModel,
+                                as: "hasplatform",
+                            },
+                        ],
+                    },
+                ],
+            });
+            return user;
+        }
+        catch (error) {
+            console.log(error);
+        }
     }
     async add(user) {
         throw new Error("Method not implemented.");
     }
     async update(user) {
-        throw new Error("Method not implemented.");
+        User_1.UserModel.update({
+            Gender: user.gender,
+            DOB: user.dob,
+            MobileNumber: user.mobileNumber,
+            Password: user.password ? user.password : user.Password,
+            Email: user.email ? user.email : user.Email,
+        }, {
+            where: {
+                UserID: user.UserId,
+            },
+        });
+    }
+    async updateAvatar(userId, avatarPath) {
+        User_1.UserModel.update({
+            Avatar: avatarPath,
+        }, {
+            where: {
+                UserID: userId,
+            },
+        });
     }
 }
 exports.SqlServerUserRepository = SqlServerUserRepository;

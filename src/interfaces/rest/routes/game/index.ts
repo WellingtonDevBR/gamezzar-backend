@@ -7,6 +7,8 @@ import { GetGameByIdController } from "../../../../infra/controllers/game/getByI
 import { GetAllGamesController } from "../../../../infra/controllers/game/get-all/GetAllGamesController";
 import { SqlServerGameRepository } from "../../../../infra/database/sequelize/repositories/game/SqlServerGameRepository";
 import { SqlServerUserGameRepository } from "../../../../infra/database/sequelize/repositories/user_game/SqlServerUserGameRepository";
+import { SearchGameByNameUseCase } from "../../../../application/use-cases/game/searchByName/SearchGameByNameUseCase";
+import { SearchGameByNameController } from "../../../../infra/controllers/game/searchByName/SearchGameByNameController";
 
 const sqlServerGameRepository = new SqlServerGameRepository();
 const sqlServerUserGameRepository = new SqlServerUserGameRepository();
@@ -30,4 +32,17 @@ const getGameByIdUseCase = new GetGameByIdUseCase(
 );
 const getGameByIdController = new GetGameByIdController(getGameByIdUseCase);
 
-export { createGameController, getAllGamesController, getGameByIdController };
+// Search by name
+const searchGameByNameUseCase = new SearchGameByNameUseCase(
+  sqlServerGameRepository
+);
+const searchGameByNameController = new SearchGameByNameController(
+  searchGameByNameUseCase
+);
+
+export {
+  createGameController,
+  getAllGamesController,
+  getGameByIdController,
+  searchGameByNameController,
+};

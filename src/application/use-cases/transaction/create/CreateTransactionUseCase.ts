@@ -3,9 +3,9 @@ import { TransactionFactory } from "../../../../domain/factories/TransactionFact
 import { ITransactionRepository } from "../../../../domain/repository/ITransactionRepository";
 
 interface Input {
-  senderId: string;
+  bidderId: string;
   receiverId: string;
-  senderGameId: string;
+  bidderGameId: string;
   receiverGameId: string;
   status: string;
 }
@@ -14,9 +14,9 @@ export class CreateTransactionUseCase implements UseCase<Input, Output> {
   constructor(private transactionRepository: ITransactionRepository) {}
   async execute(input: Input): Promise<Output> {
     const transactionFactory = TransactionFactory.create(
-      input.senderId,
+      input.bidderId,
       input.receiverId,
-      input.senderGameId,
+      input.bidderGameId,
       input.receiverGameId,
       input.status
     );

@@ -2,16 +2,16 @@ import { Transaction } from "../entities/TransactionId";
 
 export class TransactionFactory {
   static create(
-    senderId: string,
+    bidderId: string,
     receiverId: string,
-    senderGameId: string,
+    bidderGameId: string,
     receiverGameId: string,
-    status: string
+    status: string,
   ): Transaction {
     return Transaction.createTransaction({
-      senderId,
+      bidderId,
       receiverId,
-      senderGameId,
+      bidderGameId,
       receiverGameId,
       status,
     });

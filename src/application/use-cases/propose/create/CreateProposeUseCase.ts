@@ -3,10 +3,10 @@ import { ProposeFactory } from "../../../../domain/factories/ProposeFactory";
 import { IProposeRepository } from "../../../../domain/repository/IProposeRepository";
 
 interface Input {
-  interestedUserId: string;
-  ownerUserId: string;
-  interestedGameId: string;
-  ownerGameId: string;
+  bidderId: string;
+  receiverId: string;
+  bidderGameId: string;
+  receiverGameId: string;
   status: string;
 }
 interface Output {}
@@ -15,10 +15,10 @@ export class CreateProposeUseCase implements UseCase<Input, Output> {
   constructor(private proposeRepository: IProposeRepository) {}
   async execute(input: Input): Promise<Output> {
     const proposeFactory = ProposeFactory.create(
-      input.interestedGameId,
-      input.ownerGameId,
-      input.interestedUserId,
-      input.ownerUserId,
+      input.bidderId,
+      input.receiverId,
+      input.bidderGameId,
+      input.receiverGameId,
       input.status
     );
     const proposeCreated = await this.proposeRepository.create(proposeFactory);

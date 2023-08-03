@@ -1,5 +1,6 @@
 import { AddressModel } from "./models/Address";
 import { EditionModel } from "./models/Edition";
+import { FeedbackModel } from "./models/Feedback";
 import { GameModel } from "./models/Game";
 import { PlatformModel } from "./models/Platform";
 import { PreferenceModel } from "./models/Preference";
@@ -43,24 +44,34 @@ export function setupAssociations() {
     as: "wishlist",
   });
 
+  UserModel.hasMany(FeedbackModel, {
+    foreignKey: "GiverId",
+    as: "feedback_giver",
+  });
+
+  UserModel.hasMany(FeedbackModel, {
+    foreignKey: "ReceiverId",
+    as: "feedback_receiver",
+  });
+
   // ProposeModel
   ProposeModel.belongsTo(UserModel, {
-    foreignKey: "InterestedUserId",
-    as: "sender",
+    foreignKey: "BidderId",
+    as: "bidder",
   });
 
   ProposeModel.belongsTo(UserModel, {
-    foreignKey: "OwnerUserId",
+    foreignKey: "ReceiverId",
     as: "receiver",
   });
 
   ProposeModel.belongsTo(GameModel, {
-    foreignKey: "InterestedGameId",
-    as: "sender_game",
+    foreignKey: "BidderGameId",
+    as: "bidder_game",
   });
 
   ProposeModel.belongsTo(GameModel, {
-    foreignKey: "OwnerGameId",
+    foreignKey: "ReceiverGameId",
     as: "receiver_game",
   });
 
@@ -160,8 +171,8 @@ export function setupAssociations() {
 
   // TransactionModel
   TransactionModel.belongsTo(UserModel, {
-    foreignKey: "SenderId",
-    as: "sender",
+    foreignKey: "BidderId",
+    as: "bidder",
   });
 
   TransactionModel.belongsTo(UserModel, {
@@ -170,12 +181,33 @@ export function setupAssociations() {
   });
 
   TransactionModel.belongsTo(GameModel, {
-    foreignKey: "SenderGameId",
-    as: "sender_game",
+    foreignKey: "BidderGameId",
+    as: "bidder_game",
   });
 
   TransactionModel.belongsTo(GameModel, {
     foreignKey: "ReceiverGameId",
     as: "receiver_game",
+  });
+
+  TransactionModel.hasOne(FeedbackModel, {
+    foreignKey: "TransactionId",
+    as: "feedback",
+  });
+
+  // FeedbackModel
+  FeedbackModel.belongsTo(UserModel, {
+    foreignKey: "GiverId",
+    as: "feedback_giver",
+  });
+
+  FeedbackModel.belongsTo(UserModel, {
+    foreignKey: "ReceiverId",
+    as: "feedback_receiver",
+  });
+
+  FeedbackModel.belongsTo(TransactionModel, {
+    foreignKey: "TransactionId",
+    as: "transaction",
   });
 }

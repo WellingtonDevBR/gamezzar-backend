@@ -8,8 +8,9 @@ exports.PlatformModel = PlatformModel;
 function initializePlatformModel(sequelize) {
     PlatformModel.init({
         PlatformId: {
-            type: sequelize_1.DataTypes.UUID,
-            defaultValue: sequelize_1.DataTypes.UUIDV4,
+            type: sequelize_1.DataTypes.INTEGER,
+            autoIncrement: true,
+            allowNull: false,
             primaryKey: true,
         },
         Name: {

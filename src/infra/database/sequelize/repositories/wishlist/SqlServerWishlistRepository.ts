@@ -66,6 +66,37 @@ export class SqlServerWishlistRepository implements IWishlistRepository {
     return wishlist;
   }
 
+  async getAllByUserName(userName: string): Promise<any> {
+    const userWishlist = await UserModel.findAll({
+      raw: true,
+      nest: true,
+      where: {
+        UserName: userName,
+      },
+      attributes: [],
+      include: [
+        {
+          model: WishlistModel,
+          as: "wishlist",
+          required: true,
+          include: [
+            {
+              model: GameModel,
+              as: "details", // Use the same alias as defined in the association
+              include: [
+                {
+                  model: PlatformModel,
+                  as: "platform", // Use a different alias for PlatformModel association
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    });
+    return userWishlist;
+  }
+
   async getByGameAndUserId(gameId: string, userId: string): Promise<any> {
     const wishlist: any = await WishlistModel.findOne({
       raw: true,

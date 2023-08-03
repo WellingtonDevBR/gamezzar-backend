@@ -7,8 +7,11 @@ class Address extends entity_1.Entity {
         super(props, id);
     }
     static createAddress(props, id) {
-        const user = new Address(props, id);
-        return user;
+        const address = new Address(props, id);
+        return address;
+    }
+    getAllAddressInformation() {
+        return { ...this.props, id: this.getId() };
     }
 }
 exports.Address = Address;

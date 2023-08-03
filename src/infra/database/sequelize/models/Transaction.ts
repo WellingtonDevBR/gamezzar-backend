@@ -17,7 +17,7 @@ export function initializeTransactionModel(sequelize: Sequelize) {
         defaultValue: DataTypes.UUIDV4,
         primaryKey: true,
       },
-      SenderId: {
+      BidderId: {
         type: new DataTypes.UUID(),
         allowNull: false,
         references: {
@@ -33,7 +33,7 @@ export function initializeTransactionModel(sequelize: Sequelize) {
           key: "UserId",
         },
       },
-      SenderGameId: {
+      BidderGameId: {
         type: new DataTypes.UUID(),
         allowNull: false,
         references: {

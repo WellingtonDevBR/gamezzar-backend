@@ -5,15 +5,22 @@ export class CreateProposeController {
   constructor(private readonly createProposeUseCase: CreateProposeUseCase) {}
 
   async handle(request: Request, response: Response): Promise<Response> {
-    const { userId, interested_game_id, owner_user_id, owner_game_id, status } =
-      request.body;
+    const {
+      userId,
+      bidder_id,
+      bidder_game_id,
+      receiver_id,
+      receiver_game_id,
+      status,
+    } = request.body;
 
+    console.log(request.body)
     try {
       const result = await this.createProposeUseCase.execute({
-        interestedUserId: userId,
-        interestedGameId: interested_game_id,
-        ownerUserId: owner_user_id,
-        ownerGameId: owner_game_id,
+        bidderId: bidder_id ? bidder_id : userId,
+        bidderGameId: bidder_game_id,
+        receiverId: receiver_id,
+        receiverGameId: receiver_game_id,
         status,
       });
       return response.status(201).json(result);

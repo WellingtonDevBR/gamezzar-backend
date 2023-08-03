@@ -6,16 +6,17 @@ export class CreateTransactionController {
   async handle(request: Request, response: Response): Promise<Response> {
     try {
       const {
-        sender_id,
+        bidder_id,
         receiver_id,
-        sender_game_id,
+        bidder_game_id,
         receiver_game_id,
         status,
       } = request.body;
+      console.log(request.body)
       const transaction = await this.createTransactionUseCase.execute({
-        senderId: sender_id,
+        bidderId: bidder_id,
         receiverId: receiver_id,
-        senderGameId: sender_game_id,
+        bidderGameId: bidder_game_id,
         receiverGameId: receiver_game_id,
         status,
       });

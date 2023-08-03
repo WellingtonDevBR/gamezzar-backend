@@ -10,6 +10,7 @@ class GetGameByIdUseCase {
     async execute(request) {
         const game = await this.gameRepository.getById(request.id);
         const userGame = await this.userGameRepository.getByGameId(request.id);
+        console.log(userGame);
         const formattedGame = (0, objectConverter_1.convertObjectToSnakeCase)(game);
         const formattedUserGame = (0, objectConverter_1.convertObjectToSnakeCase)(userGame);
         return {

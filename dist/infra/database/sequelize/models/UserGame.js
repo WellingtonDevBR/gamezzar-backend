@@ -24,7 +24,7 @@ function initializeUserGameModel(sequelize) {
             },
         },
         PlatformId: {
-            type: new sequelize_1.DataTypes.STRING(128),
+            type: new sequelize_1.DataTypes.INTEGER,
             allowNull: false,
             references: {
                 model: "Platform",
@@ -32,7 +32,7 @@ function initializeUserGameModel(sequelize) {
             },
         },
         RegionId: {
-            type: new sequelize_1.DataTypes.STRING(128),
+            type: new sequelize_1.DataTypes.INTEGER,
             allowNull: false,
             references: {
                 model: "Region",

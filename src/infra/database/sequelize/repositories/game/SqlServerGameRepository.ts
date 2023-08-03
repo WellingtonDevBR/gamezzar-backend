@@ -28,15 +28,17 @@ export class SqlServerGameRepository implements IGameRepository {
     return await GameModel.findAll({
       raw: true,
       nest: true,
-      include: [{
-        model: EditionModel,
-        as: "edition",
-      }]
+      include: [
+        {
+          model: EditionModel,
+          as: "edition",
+        },
+      ],
     });
   }
 
   async getById(gameId: string): Promise<any> {
-    const data =  await GameModel.findOne({
+    const data = await GameModel.findOne({
       raw: true,
       nest: true,
       where: { GameId: gameId },
@@ -56,9 +58,22 @@ export class SqlServerGameRepository implements IGameRepository {
         {
           model: RegionModel,
           as: "region",
-        }
+        },
       ],
     });
     return data;
+  }
+
+  async searchByName(name: string): Promise<any> {
+    return await GameModel.findAll({
+      raw: true,
+      nest: true,
+      where: {
+        Title: {
+          [Op.like]: `%${name}%`,
+        },
+      },
+      limit: 5,
+    });
   }
 }

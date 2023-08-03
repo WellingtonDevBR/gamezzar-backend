@@ -1,0 +1,1 @@
+{"version":3,"file":"FeedbackFactory.js","sourceRoot":"./src/","sources":["domain/factories/FeedbackFactory.ts"],"names":[],"mappings":";;;AAAA,mDAAgD;AAEhD,MAAa,eAAe;IAC1B,MAAM,CAAC,MAAM,CACX,aAAqB,EACrB,MAAc,EACd,OAAe,EACf,UAAkB,EAClB,OAAgB;QAEhB,OAAO,mBAAQ,CAAC,cAAc,CAAC;YAC7B,aAAa;YACb,MAAM;YACN,OAAO;YACP,OAAO;YACP,UAAU;SACX,CAAC,CAAC;IACL,CAAC;CACF;AAhBD,0CAgBC"}

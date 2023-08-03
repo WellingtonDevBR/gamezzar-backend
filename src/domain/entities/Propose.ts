@@ -2,10 +2,10 @@ import { Entity } from "../../@seedowrk/domain/entity";
 
 interface ProposeProps {
   id?: string;
-  interestedUserId: string;
-  ownerUserId: string;
-  interestedGameId: string;
-  ownerGameId: string;
+  bidderId: string;
+  receiverId: string;
+  receiverGameId: string;
+  bidderGameId: string;
   status: string;
 }
 

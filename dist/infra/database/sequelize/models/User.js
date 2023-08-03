@@ -32,6 +32,18 @@ function initializeUserModel(sequelize) {
             type: new sequelize_1.DataTypes.STRING(128),
             allowNull: false,
         },
+        DOB: {
+            type: new sequelize_1.DataTypes.STRING(8),
+            allowNull: true,
+        },
+        Gender: {
+            type: new sequelize_1.DataTypes.STRING(6),
+            allowNull: true,
+        },
+        MobileNumber: {
+            type: new sequelize_1.DataTypes.STRING(16),
+            allowNull: true,
+        },
         Password: {
             type: new sequelize_1.DataTypes.STRING(128),
             allowNull: false,

@@ -1,0 +1,1 @@
+{"version":3,"file":"PreferenceFactory.js","sourceRoot":"./src/","sources":["domain/factories/PreferenceFactory.ts"],"names":[],"mappings":";;;AAAA,uDAAqE;AAErE,MAAa,iBAAiB;IAC5B,MAAM,CAAC,MAAM,CAAC,KAAsB,EAAE,EAAW;QAC/C,OAAO,uBAAU,CAAC,gBAAgB,CAAC,KAAK,EAAE,EAAE,CAAC,CAAC;IAChD,CAAC;CACF;AAJD,8CAIC"}

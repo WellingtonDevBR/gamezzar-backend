@@ -6,6 +6,13 @@ const sequelize_1 = require("sequelize");
 const User_1 = require("../../models/User");
 const Game_1 = require("../../models/Game");
 class SqlServerProposeRepository {
+    async deleteById(proposeId) {
+        return await Propose_1.ProposeModel.destroy({
+            where: {
+                ProposeId: proposeId,
+            },
+        });
+    }
     async create(data) {
         const propose = data.getAllProposeInformation();
         const createdPropose = await Propose_1.ProposeModel.create({

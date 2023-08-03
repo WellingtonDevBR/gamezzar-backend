@@ -9,7 +9,7 @@ module.exports = {
         allowNull: false,
         primaryKey: true,
       },
-      InterestedUserId: {
+      BidderId: {
         type: Sequelize.UUID,
         allowNull: false,
         references: {
@@ -17,7 +17,7 @@ module.exports = {
           key: "UserId",
         },
       },
-      InterestedGameId: {
+      BidderGameId: {
         type: Sequelize.UUID,
         allowNull: false,
         references: {
@@ -25,7 +25,7 @@ module.exports = {
           key: "GameId",
         },
       },
-      OwnerUserId: {
+      ReceiverId: {
         type: Sequelize.UUID,
         allowNull: false,
         references: {
@@ -33,7 +33,7 @@ module.exports = {
           key: "UserId",
         },
       },
-      OwnerGameId: {
+      ReceiverGameId: {
         type: Sequelize.UUID,
         allowNull: false,
         references: {
@@ -42,7 +42,7 @@ module.exports = {
         },
       },
       Status: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
         allowNull: false,
       },
       UpdatedAt: {

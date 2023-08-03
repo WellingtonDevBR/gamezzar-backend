@@ -2,17 +2,18 @@ import { Propose } from "../entities/Propose";
 
 export class ProposeFactory {
   static create(
-    interestedGameId: string,
-    ownerGameId: string,
-    interestedUserId: string,
-    ownerUserId: string,
+    bidderId: string,
+    receiverId: string,
+    bidderGameId: string,
+    receiverGameId: string,
+
     status: string
   ): Propose {
     return Propose.createPropose({
-      interestedGameId,
-      ownerGameId,
-      interestedUserId,
-      ownerUserId,
+      bidderId,
+      receiverId,
+      bidderGameId,
+      receiverGameId,
       status,
     });
   }

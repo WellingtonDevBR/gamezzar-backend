@@ -17,6 +17,8 @@ const route_4 = require("./interfaces/rest/routes/wishlist/route");
 const route_5 = require("./interfaces/rest/routes/propose/route");
 const route_6 = require("./interfaces/rest/routes/message/route");
 const route_7 = require("./interfaces/rest/routes/chat/route");
+const routes_1 = require("./interfaces/rest/routes/transaction/routes");
+const route_8 = require("./interfaces/rest/routes/feedback/route");
 let io;
 async function startServer() {
     try {
@@ -33,6 +35,8 @@ async function startServer() {
         app.use("/api/propose", route_5.proposeRoutes);
         app.use("/api/message", route_6.messageRoutes);
         app.use("/api/chat", route_7.chatRoutes);
+        app.use("/api/transaction", routes_1.transactionRoutes);
+        app.use("/api/feedback", route_8.feedbackRoutes);
         const httpServer = http_1.default.createServer(app);
         exports.io = io = new socket_io_1.Server(httpServer, {
             cors: {
