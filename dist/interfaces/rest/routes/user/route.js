@@ -12,6 +12,8 @@ const aws_sdk_1 = __importDefault(require("aws-sdk"));
 const SqlServerUserRepository_1 = require("../../../../infra/database/sequelize/repositories/user/SqlServerUserRepository");
 const constants_1 = require("../../../../@seedowrk/helper/constants");
 const aws_client_1 = require("../../../../@seedowrk/service/aws-client");
+const feedback_1 = require("../feedback");
+const wishlist_1 = require("../wishlist");
 require("dotenv").config();
 var googleMapsClient = require("@google/maps").createClient({
     key: "AIzaSyA0N_z3NOgTc8FOeKCAhoWah-GzoExKFDE",
@@ -23,6 +25,12 @@ userRoutes.post("/login", async (request, response) => {
 });
 userRoutes.post("/register", async (request, response) => {
     _1.createUserController.handle(request, response);
+});
+userRoutes.get("/:username/feedbacks", async (request, response) => {
+    feedback_1.findAllFeedbackByUserNameController.handle(request, response);
+});
+userRoutes.get("/:username/wishlist", async (request, response) => {
+    wishlist_1.getAllWishlistByUserNameController.handle(request, response);
 });
 userRoutes.get("/compare-locations/:origin/:destination", async (request, response) => {
     googleMapsClient.distanceMatrix({

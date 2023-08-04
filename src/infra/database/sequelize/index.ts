@@ -19,8 +19,10 @@ import { initializeMessageModel } from "./models/Message";
 import { initializePreferenceModel } from "./models/Preference";
 import { initializeTransactionModel } from "./models/Transaction";
 import { initializeFeedbackModel } from "./models/Feedback";
+import { initializeFollowModel } from "./models/Follow";
 
 initializeUserModel(sequelize);
+initializeFollowModel(sequelize);
 initializeGameModel(sequelize);
 initializeAddressModel(sequelize);
 initializeUserGameModel(sequelize);
@@ -39,6 +41,7 @@ initializeMessageModel(sequelize);
 initializePreferenceModel(sequelize);
 initializeTransactionModel(sequelize);
 initializeFeedbackModel(sequelize);
+
 
 setupAssociations();
 

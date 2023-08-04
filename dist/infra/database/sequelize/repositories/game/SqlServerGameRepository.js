@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.SqlServerGameRepository = void 0;
+const sequelize_1 = require("sequelize");
 const Game_1 = require("../../models/Game");
 const UserGame_1 = require("../../models/UserGame");
 const User_1 = require("../../models/User");
@@ -25,10 +26,12 @@ class SqlServerGameRepository {
         return await Game_1.GameModel.findAll({
             raw: true,
             nest: true,
-            include: [{
+            include: [
+                {
                     model: Edition_1.EditionModel,
                     as: "edition",
-                }]
+                },
+            ],
         });
     }
     async getById(gameId) {
@@ -52,10 +55,22 @@ class SqlServerGameRepository {
                 {
                     model: Region_1.RegionModel,
                     as: "region",
-                }
+                },
             ],
         });
         return data;
+    }
+    async searchByName(name) {
+        return await Game_1.GameModel.findAll({
+            raw: true,
+            nest: true,
+            where: {
+                Title: {
+                    [sequelize_1.Op.like]: `%${name}%`,
+                },
+            },
+            limit: 5,
+        });
     }
 }
 exports.SqlServerGameRepository = SqlServerGameRepository;

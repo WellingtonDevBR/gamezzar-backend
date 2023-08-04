@@ -1,6 +1,7 @@
 import { AddressModel } from "./models/Address";
 import { EditionModel } from "./models/Edition";
 import { FeedbackModel } from "./models/Feedback";
+import { FollowModel } from "./models/Follow";
 import { GameModel } from "./models/Game";
 import { PlatformModel } from "./models/Platform";
 import { PreferenceModel } from "./models/Preference";
@@ -52,6 +53,11 @@ export function setupAssociations() {
   UserModel.hasMany(FeedbackModel, {
     foreignKey: "ReceiverId",
     as: "feedback_receiver",
+  });
+
+  UserModel.hasMany(FollowModel, {
+    foreignKey: "FollowerId",
+    as: "userFollowers",
   });
 
   // ProposeModel
@@ -209,5 +215,16 @@ export function setupAssociations() {
   FeedbackModel.belongsTo(TransactionModel, {
     foreignKey: "TransactionId",
     as: "transaction",
+  });
+
+  // Define associations
+  FollowModel.belongsTo(UserModel, {
+    foreignKey: "FollowerId",
+    as: "follower",
+  });
+
+  FollowModel.belongsTo(UserModel, {
+    foreignKey: "FolloweeId",
+    as: "followee",
   });
 }

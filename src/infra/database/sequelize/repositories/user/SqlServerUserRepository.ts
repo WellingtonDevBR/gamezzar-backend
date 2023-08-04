@@ -86,6 +86,7 @@ export class SqlServerUserRepository implements IUserRepository {
           UserName: name,
         },
         attributes: [
+          "UserId",
           "FirstName",
           "LastName",
           "UserName",

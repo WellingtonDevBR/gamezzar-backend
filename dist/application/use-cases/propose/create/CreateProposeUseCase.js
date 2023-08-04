@@ -7,7 +7,7 @@ class CreateProposeUseCase {
         this.proposeRepository = proposeRepository;
     }
     async execute(input) {
-        const proposeFactory = ProposeFactory_1.ProposeFactory.create(input.interestedGameId, input.ownerGameId, input.interestedUserId, input.ownerUserId, input.status);
+        const proposeFactory = ProposeFactory_1.ProposeFactory.create(input.bidderId, input.receiverId, input.bidderGameId, input.receiverGameId, input.status);
         const proposeCreated = await this.proposeRepository.create(proposeFactory);
         if (!proposeCreated) {
             throw new Error("Propose not created");

@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.setupAssociations = void 0;
 const Address_1 = require("./models/Address");
 const Edition_1 = require("./models/Edition");
+const Feedback_1 = require("./models/Feedback");
 const Game_1 = require("./models/Game");
 const Platform_1 = require("./models/Platform");
 const Preference_1 = require("./models/Preference");
@@ -38,20 +39,28 @@ function setupAssociations() {
         foreignKey: "UserId",
         as: "wishlist",
     });
-    Propose_1.ProposeModel.belongsTo(User_1.UserModel, {
-        foreignKey: "InterestedUserId",
-        as: "sender",
+    User_1.UserModel.hasMany(Feedback_1.FeedbackModel, {
+        foreignKey: "GiverId",
+        as: "feedback_giver",
+    });
+    User_1.UserModel.hasMany(Feedback_1.FeedbackModel, {
+        foreignKey: "ReceiverId",
+        as: "feedback_receiver",
     });
     Propose_1.ProposeModel.belongsTo(User_1.UserModel, {
-        foreignKey: "OwnerUserId",
+        foreignKey: "BidderId",
+        as: "bidder",
+    });
+    Propose_1.ProposeModel.belongsTo(User_1.UserModel, {
+        foreignKey: "ReceiverId",
         as: "receiver",
     });
     Propose_1.ProposeModel.belongsTo(Game_1.GameModel, {
-        foreignKey: "InterestedGameId",
-        as: "sender_game",
+        foreignKey: "BidderGameId",
+        as: "bidder_game",
     });
     Propose_1.ProposeModel.belongsTo(Game_1.GameModel, {
-        foreignKey: "OwnerGameId",
+        foreignKey: "ReceiverGameId",
         as: "receiver_game",
     });
     Game_1.GameModel.belongsToMany(User_1.UserModel, {
@@ -126,20 +135,36 @@ function setupAssociations() {
         as: "user",
     });
     Transaction_1.TransactionModel.belongsTo(User_1.UserModel, {
-        foreignKey: "SenderId",
-        as: "sender",
+        foreignKey: "BidderId",
+        as: "bidder",
     });
     Transaction_1.TransactionModel.belongsTo(User_1.UserModel, {
         foreignKey: "ReceiverId",
         as: "receiver",
     });
     Transaction_1.TransactionModel.belongsTo(Game_1.GameModel, {
-        foreignKey: "SenderGameId",
-        as: "sender_game",
+        foreignKey: "BidderGameId",
+        as: "bidder_game",
     });
     Transaction_1.TransactionModel.belongsTo(Game_1.GameModel, {
         foreignKey: "ReceiverGameId",
         as: "receiver_game",
+    });
+    Transaction_1.TransactionModel.hasOne(Feedback_1.FeedbackModel, {
+        foreignKey: "TransactionId",
+        as: "feedback",
+    });
+    Feedback_1.FeedbackModel.belongsTo(User_1.UserModel, {
+        foreignKey: "GiverId",
+        as: "feedback_giver",
+    });
+    Feedback_1.FeedbackModel.belongsTo(User_1.UserModel, {
+        foreignKey: "ReceiverId",
+        as: "feedback_receiver",
+    });
+    Feedback_1.FeedbackModel.belongsTo(Transaction_1.TransactionModel, {
+        foreignKey: "TransactionId",
+        as: "transaction",
     });
 }
 exports.setupAssociations = setupAssociations;

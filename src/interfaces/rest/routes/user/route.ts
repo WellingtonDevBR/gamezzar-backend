@@ -17,6 +17,12 @@ import { generateRandomString } from "../../../../@seedowrk/helper/constants";
 import { AwsClient } from "../../../../@seedowrk/service/aws-client";
 import { findAllFeedbackByUserNameController } from "../feedback";
 import { getAllWishlistByUserNameController } from "../wishlist";
+import {
+  createFollowController,
+  findAllFollowersController,
+  findOneFollowerController,
+  unfollowController,
+} from "../follow";
 require("dotenv").config();
 var googleMapsClient = require("@google/maps").createClient({
   key: "AIzaSyA0N_z3NOgTc8FOeKCAhoWah-GzoExKFDE",
@@ -32,6 +38,30 @@ userRoutes.post("/register", async (request: Request, response: Response) => {
   createUserController.handle(request, response);
 });
 
+userRoutes.post("/follow", authenticate, async (request: Request, response: Response) => {
+  createFollowController.handle(request, response);
+});
+
+userRoutes.get(
+  "/follow",
+  authenticate,
+  async (request: Request, response: Response) => {
+    findAllFollowersController.handle(request, response);
+  }
+);
+
+userRoutes.get(
+  "/follow/:username",
+  authenticate,
+  async (request: Request, response: Response) => {
+    findOneFollowerController.handle(request, response);
+  }
+);
+
+userRoutes.delete("/unfollow", authenticate, async (request: Request, response: Response) => {
+  unfollowController.handle(request, response);
+});
+
 userRoutes.get("/:username/feedbacks", async (request, response) => {
   findAllFeedbackByUserNameController.handle(request, response);
 });
@@ -39,7 +69,6 @@ userRoutes.get("/:username/feedbacks", async (request, response) => {
 userRoutes.get("/:username/wishlist", async (request, response) => {
   getAllWishlistByUserNameController.handle(request, response);
 });
-
 
 userRoutes.get(
   "/compare-locations/:origin/:destination",

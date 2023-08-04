@@ -1,10 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.updateWishlistByIdController = exports.getAllWishlistController = exports.createWishlistController = void 0;
+exports.getAllWishlistByUserNameController = exports.updateWishlistByIdController = exports.getAllWishlistController = exports.createWishlistController = void 0;
 const CreateWishlistUseCase_1 = require("../../../../application/use-cases/wishlist/create/CreateWishlistUseCase");
+const GetAllWishlistByUserNameUseCase_1 = require("../../../../application/use-cases/wishlist/getAllByUserName/GetAllWishlistByUserNameUseCase");
 const GetAllWishlistUseCase_1 = require("../../../../application/use-cases/wishlist/get_all/GetAllWishlistUseCase");
 const UpdateWishlistByIdUseCase_1 = require("../../../../application/use-cases/wishlist/update/UpdateWishlistByIdUseCase");
 const CreateWishlistController_1 = require("../../../../infra/controllers/wishlist/create/CreateWishlistController");
+const GetAllWishlistByUserNameController_1 = require("../../../../infra/controllers/wishlist/getAllByUserName/GetAllWishlistByUserNameController");
 const GetAllWishlistController_1 = require("../../../../infra/controllers/wishlist/get_all/GetAllWishlistController");
 const UpdateWishlistByIdController_1 = require("../../../../infra/controllers/wishlist/update/UpdateWishlistByIdController");
 const SqlServerWishlistRepository_1 = require("../../../../infra/database/sequelize/repositories/wishlist/SqlServerWishlistRepository");
@@ -18,4 +20,7 @@ exports.getAllWishlistController = getAllWishlistController;
 const updateWishlistByIdUseCase = new UpdateWishlistByIdUseCase_1.UpdateWishlistByIdUseCase(sqlServerWishlistRepository);
 const updateWishlistByIdController = new UpdateWishlistByIdController_1.UpdateWishlistByUserIdController(updateWishlistByIdUseCase);
 exports.updateWishlistByIdController = updateWishlistByIdController;
+const getAllWishlistByUserNameUseCase = new GetAllWishlistByUserNameUseCase_1.GetAllWishlistByUserNameUseCase(sqlServerWishlistRepository);
+const getAllWishlistByUserNameController = new GetAllWishlistByUserNameController_1.GetAllWishlistByUserNameController(getAllWishlistByUserNameUseCase);
+exports.getAllWishlistByUserNameController = getAllWishlistByUserNameController;
 //# sourceMappingURL=index.js.map

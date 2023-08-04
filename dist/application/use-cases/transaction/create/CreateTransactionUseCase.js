@@ -7,7 +7,7 @@ class CreateTransactionUseCase {
         this.transactionRepository = transactionRepository;
     }
     async execute(input) {
-        const transactionFactory = TransactionFactory_1.TransactionFactory.create(input.senderId, input.receiverId, input.senderGameId, input.receiverGameId, input.status);
+        const transactionFactory = TransactionFactory_1.TransactionFactory.create(input.bidderId, input.receiverId, input.bidderGameId, input.receiverGameId, input.status);
         return await this.transactionRepository.create(transactionFactory);
     }
 }

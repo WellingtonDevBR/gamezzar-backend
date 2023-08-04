@@ -16,6 +16,9 @@ gamesRoutes.post("/create", upload.single("image"), async (request, response) =>
 gamesRoutes.get("/get-all", async (request, response) => {
     _1.getAllGamesController.handle(request, response);
 });
+gamesRoutes.get("/search/", async (request, response) => {
+    _1.searchGameByNameController.handle(request, response);
+});
 gamesRoutes.get("/:id", async (request, response) => {
     _1.getGameByIdController.handle(request, response);
 });

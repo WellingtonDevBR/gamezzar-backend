@@ -12,21 +12,37 @@ function initializeProposeModel(sequelize) {
             defaultValue: sequelize_1.DataTypes.UUIDV4,
             primaryKey: true,
         },
-        InterestedGameId: {
+        BidderId: {
             type: new sequelize_1.DataTypes.STRING(128),
             allowNull: false,
+            references: {
+                model: "User",
+                key: "UserId",
+            },
         },
-        OwnerGameId: {
+        ReceiverId: {
             type: new sequelize_1.DataTypes.STRING(128),
             allowNull: false,
+            references: {
+                model: "User",
+                key: "UserId",
+            },
         },
-        InterestedUserId: {
+        BidderGameId: {
             type: new sequelize_1.DataTypes.STRING(128),
             allowNull: false,
+            references: {
+                model: "Game",
+                key: "Gameid",
+            },
         },
-        OwnerUserId: {
+        ReceiverGameId: {
             type: new sequelize_1.DataTypes.STRING(128),
             allowNull: false,
+            references: {
+                model: "Game",
+                key: "Gameid",
+            },
         },
         Status: {
             type: new sequelize_1.DataTypes.STRING(128),

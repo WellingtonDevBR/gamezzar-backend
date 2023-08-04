@@ -59,6 +59,36 @@ class SqlServerWishlistRepository {
         });
         return wishlist;
     }
+    async getAllByUserName(userName) {
+        const userWishlist = await User_1.UserModel.findAll({
+            raw: true,
+            nest: true,
+            where: {
+                UserName: userName,
+            },
+            attributes: [],
+            include: [
+                {
+                    model: Wishlist_1.WishlistModel,
+                    as: "wishlist",
+                    required: true,
+                    include: [
+                        {
+                            model: Game_1.GameModel,
+                            as: "details",
+                            include: [
+                                {
+                                    model: Platform_1.PlatformModel,
+                                    as: "platform",
+                                },
+                            ],
+                        },
+                    ],
+                },
+            ],
+        });
+        return userWishlist;
+    }
     async getByGameAndUserId(gameId, userId) {
         const wishlist = await Wishlist_1.WishlistModel.findOne({
             raw: true,

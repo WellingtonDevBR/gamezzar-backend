@@ -21,7 +21,7 @@ export const authenticate = async (
   const authHeader = request.headers.authorization;
 
   if (!authHeader)
-    return response.status(401).json({ message: "Token not found" });
+    return response.status(404).json({ message: "Token not found" });
   const token = authHeader.split(" ")[1]; // Extract token from 'Bearer tokenString'
   try {
     const payload = await V4.verify(token, privateKey); // Decoding token with private key

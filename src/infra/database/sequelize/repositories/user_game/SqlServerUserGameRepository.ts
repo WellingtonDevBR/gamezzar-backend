@@ -1,3 +1,4 @@
+import { Op } from "sequelize";
 import { IUserGameRepository } from "../../../../../domain/repository/IUserGameRepository";
 import { AddressModel } from "../../models/Address";
 import { EditionModel } from "../../models/Edition";
@@ -65,7 +66,7 @@ export class SqlServerUserGameRepository implements IUserGameRepository {
                   model: GameModel,
                   as: "details",
                 },
-              ]
+              ],
             },
             {
               model: AddressModel,
@@ -87,11 +88,44 @@ export class SqlServerUserGameRepository implements IUserGameRepository {
     return data;
   }
 
-  async getAll(): Promise<any> {
-    const data = await GameModel.findAll({
+  async getAll(offset: number, userId?: string): Promise<any> {
+    let whereCondition = {}; // Empty object to hold the where condition
+
+    if (userId !== undefined && userId !== null) {
+      // If userId is defined and not null, add the filter condition
+      whereCondition = {
+        [Op.not]: [
+          {
+            "$user.UserId$": userId,
+          },
+        ],
+      };
+    }
+
+    const data = await UserGameModel.findAll({
       raw: true,
       nest: true,
+      limit: 10, // number of records to fetch
+      offset: offset, // start fetching records from this offset
       include: [
+        {
+          model: GameModel,
+          as: "item",
+          include: [
+            {
+              model: PlatformModel,
+              as: "platform",
+            },
+            {
+              model: RegionModel,
+              as: "region",
+            },
+            {
+              model: EditionModel,
+              as: "edition",
+            },
+          ],
+        },
         {
           model: UserModel,
           as: "user",
@@ -99,54 +133,44 @@ export class SqlServerUserGameRepository implements IUserGameRepository {
             {
               model: AddressModel,
               as: "address",
-              required: false,
             },
           ],
-        },
-        {
-          model: EditionModel,
-          as: "edition",
-        },
-        {
-          model: RegionModel,
-          as: "region",
+          where: whereCondition, // Pass the where condition to the query
+          required: true,
         },
       ],
     });
+
     return data;
   }
 
   async getAllByUserId(userId: string): Promise<any> {
-    try {
-      const data = await UserGameModel.findAll({
-        raw: true,
-        nest: true,
-        where: { UserId: userId },
-        include: [
-          {
-            model: GameModel,
-            as: "item",
-            include: [
-              {
-                model: PlatformModel,
-                as: "platform",
-              },
-              {
-                model: RegionModel,
-                as: "region",
-              },
-              {
-                model: EditionModel,
-                as: "edition",
-              },
-            ],
-          },
-        ],
-      });
-      return data;
-    } catch (error) {
-      console.log(error);
-    }
+    const data = await UserGameModel.findAll({
+      raw: true,
+      nest: true,
+      where: { UserId: userId },
+      include: [
+        {
+          model: GameModel,
+          as: "item",
+          include: [
+            {
+              model: PlatformModel,
+              as: "platform",
+            },
+            {
+              model: RegionModel,
+              as: "region",
+            },
+            {
+              model: EditionModel,
+              as: "edition",
+            },
+          ],
+        },
+      ],
+    });
+    return data;
   }
 
   async getByGameId(gameId: string): Promise<any> {
