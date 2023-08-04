@@ -14,6 +14,7 @@ const constants_1 = require("../../../../@seedowrk/helper/constants");
 const aws_client_1 = require("../../../../@seedowrk/service/aws-client");
 const feedback_1 = require("../feedback");
 const wishlist_1 = require("../wishlist");
+const follow_1 = require("../follow");
 require("dotenv").config();
 var googleMapsClient = require("@google/maps").createClient({
     key: "AIzaSyA0N_z3NOgTc8FOeKCAhoWah-GzoExKFDE",
@@ -25,6 +26,18 @@ userRoutes.post("/login", async (request, response) => {
 });
 userRoutes.post("/register", async (request, response) => {
     _1.createUserController.handle(request, response);
+});
+userRoutes.post("/follow", auth_1.authenticate, async (request, response) => {
+    follow_1.createFollowController.handle(request, response);
+});
+userRoutes.get("/follow", auth_1.authenticate, async (request, response) => {
+    follow_1.findAllFollowersController.handle(request, response);
+});
+userRoutes.get("/follow/:username", auth_1.authenticate, async (request, response) => {
+    follow_1.findOneFollowerController.handle(request, response);
+});
+userRoutes.delete("/unfollow", auth_1.authenticate, async (request, response) => {
+    follow_1.unfollowController.handle(request, response);
 });
 userRoutes.get("/:username/feedbacks", async (request, response) => {
     feedback_1.findAllFeedbackByUserNameController.handle(request, response);

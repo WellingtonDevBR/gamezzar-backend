@@ -4,6 +4,7 @@ exports.setupAssociations = void 0;
 const Address_1 = require("./models/Address");
 const Edition_1 = require("./models/Edition");
 const Feedback_1 = require("./models/Feedback");
+const Follow_1 = require("./models/Follow");
 const Game_1 = require("./models/Game");
 const Platform_1 = require("./models/Platform");
 const Preference_1 = require("./models/Preference");
@@ -46,6 +47,10 @@ function setupAssociations() {
     User_1.UserModel.hasMany(Feedback_1.FeedbackModel, {
         foreignKey: "ReceiverId",
         as: "feedback_receiver",
+    });
+    User_1.UserModel.hasMany(Follow_1.FollowModel, {
+        foreignKey: "FollowerId",
+        as: "userFollowers",
     });
     Propose_1.ProposeModel.belongsTo(User_1.UserModel, {
         foreignKey: "BidderId",
@@ -165,6 +170,14 @@ function setupAssociations() {
     Feedback_1.FeedbackModel.belongsTo(Transaction_1.TransactionModel, {
         foreignKey: "TransactionId",
         as: "transaction",
+    });
+    Follow_1.FollowModel.belongsTo(User_1.UserModel, {
+        foreignKey: "FollowerId",
+        as: "follower",
+    });
+    Follow_1.FollowModel.belongsTo(User_1.UserModel, {
+        foreignKey: "FolloweeId",
+        as: "followee",
     });
 }
 exports.setupAssociations = setupAssociations;

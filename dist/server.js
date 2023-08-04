@@ -19,6 +19,7 @@ const route_6 = require("./interfaces/rest/routes/message/route");
 const route_7 = require("./interfaces/rest/routes/chat/route");
 const routes_1 = require("./interfaces/rest/routes/transaction/routes");
 const route_8 = require("./interfaces/rest/routes/feedback/route");
+const routes_2 = require("./interfaces/rest/routes/listing/routes");
 let io;
 async function startServer() {
     try {
@@ -27,7 +28,7 @@ async function startServer() {
         await sequelize_1.sequelize.authenticate();
         const app = (0, express_1.default)();
         app.use((0, cors_1.default)());
-        app.use(express_1.default.json());
+        app.use(express_1.default.json({ limit: "50mb" }));
         app.use("/api/user", route_1.userRoutes);
         app.use("/api/game", route_2.gamesRoutes);
         app.use("/api/user-collection", route_3.userGameRoutes);
@@ -37,6 +38,7 @@ async function startServer() {
         app.use("/api/chat", route_7.chatRoutes);
         app.use("/api/transaction", routes_1.transactionRoutes);
         app.use("/api/feedback", route_8.feedbackRoutes);
+        app.use("/api/listing", routes_2.listingRoutes);
         const httpServer = http_1.default.createServer(app);
         exports.io = io = new socket_io_1.Server(httpServer, {
             cors: {

@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.SqlServerUserGameRepository = void 0;
+const sequelize_1 = require("sequelize");
 const Address_1 = require("../../models/Address");
 const Edition_1 = require("../../models/Edition");
 const Game_1 = require("../../models/Game");
@@ -63,7 +64,7 @@ class SqlServerUserGameRepository {
                                     model: Game_1.GameModel,
                                     as: "details",
                                 },
-                            ]
+                            ],
                         },
                         {
                             model: Address_1.AddressModel,
@@ -84,11 +85,41 @@ class SqlServerUserGameRepository {
         });
         return data;
     }
-    async getAll() {
-        const data = await Game_1.GameModel.findAll({
+    async getAll(offset, userId) {
+        let whereCondition = {};
+        if (userId !== undefined && userId !== null) {
+            whereCondition = {
+                [sequelize_1.Op.not]: [
+                    {
+                        "$user.UserId$": userId,
+                    },
+                ],
+            };
+        }
+        const data = await UserGame_1.UserGameModel.findAll({
             raw: true,
             nest: true,
+            limit: 10,
+            offset: offset,
             include: [
+                {
+                    model: Game_1.GameModel,
+                    as: "item",
+                    include: [
+                        {
+                            model: Platform_1.PlatformModel,
+                            as: "platform",
+                        },
+                        {
+                            model: Region_1.RegionModel,
+                            as: "region",
+                        },
+                        {
+                            model: Edition_1.EditionModel,
+                            as: "edition",
+                        },
+                    ],
+                },
                 {
                     model: User_1.UserModel,
                     as: "user",
@@ -96,54 +127,42 @@ class SqlServerUserGameRepository {
                         {
                             model: Address_1.AddressModel,
                             as: "address",
-                            required: false,
                         },
                     ],
-                },
-                {
-                    model: Edition_1.EditionModel,
-                    as: "edition",
-                },
-                {
-                    model: Region_1.RegionModel,
-                    as: "region",
+                    where: whereCondition,
+                    required: true,
                 },
             ],
         });
         return data;
     }
     async getAllByUserId(userId) {
-        try {
-            const data = await UserGame_1.UserGameModel.findAll({
-                raw: true,
-                nest: true,
-                where: { UserId: userId },
-                include: [
-                    {
-                        model: Game_1.GameModel,
-                        as: "item",
-                        include: [
-                            {
-                                model: Platform_1.PlatformModel,
-                                as: "platform",
-                            },
-                            {
-                                model: Region_1.RegionModel,
-                                as: "region",
-                            },
-                            {
-                                model: Edition_1.EditionModel,
-                                as: "edition",
-                            },
-                        ],
-                    },
-                ],
-            });
-            return data;
-        }
-        catch (error) {
-            console.log(error);
-        }
+        const data = await UserGame_1.UserGameModel.findAll({
+            raw: true,
+            nest: true,
+            where: { UserId: userId },
+            include: [
+                {
+                    model: Game_1.GameModel,
+                    as: "item",
+                    include: [
+                        {
+                            model: Platform_1.PlatformModel,
+                            as: "platform",
+                        },
+                        {
+                            model: Region_1.RegionModel,
+                            as: "region",
+                        },
+                        {
+                            model: Edition_1.EditionModel,
+                            as: "edition",
+                        },
+                    ],
+                },
+            ],
+        });
+        return data;
     }
     async getByGameId(gameId) {
         const data = await UserGame_1.UserGameModel.findAll({

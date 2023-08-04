@@ -77,6 +77,7 @@ class SqlServerUserRepository {
                     UserName: name,
                 },
                 attributes: [
+                    "UserId",
                     "FirstName",
                     "LastName",
                     "UserName",

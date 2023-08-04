@@ -1,0 +1,28 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.unfollowController = exports.findAllFollowersController = exports.findOneFollowerController = exports.createFollowController = void 0;
+const CreateFollowUseCase_1 = require("../../../../application/use-cases/follow/create/CreateFollowUseCase");
+const findAllFollowersUseCase_1 = require("../../../../application/use-cases/follow/findAllFollowers/findAllFollowersUseCase");
+const findOneFollowerUseCase_1 = require("../../../../application/use-cases/follow/findFollower/findOneFollowerUseCase");
+const UnfollowUseCase_1 = require("../../../../application/use-cases/follow/unfollow/UnfollowUseCase");
+const CreateFollowController_1 = require("../../../../infra/controllers/follow/create/CreateFollowController");
+const UnfollowController_1 = require("../../../../infra/controllers/follow/delete/UnfollowController");
+const FindAllFollowersController_1 = require("../../../../infra/controllers/follow/findAllFollowers/FindAllFollowersController");
+const FindOneFollowerController_1 = require("../../../../infra/controllers/follow/findFollower/FindOneFollowerController");
+const ISqlServerFollowRepository_1 = require("../../../../infra/database/sequelize/repositories/follow/ISqlServerFollowRepository");
+const SqlServerUserRepository_1 = require("../../../../infra/database/sequelize/repositories/user/SqlServerUserRepository");
+const sqlServerFollowRepository = new ISqlServerFollowRepository_1.SqlServerFollowRepository();
+const usersRepository = new SqlServerUserRepository_1.SqlServerUserRepository();
+const createFollowUseCase = new CreateFollowUseCase_1.CreateFollowUseCase(sqlServerFollowRepository, usersRepository);
+const createFollowController = new CreateFollowController_1.CreateFollowController(createFollowUseCase);
+exports.createFollowController = createFollowController;
+const findOneFollowerUseCase = new findOneFollowerUseCase_1.FindOneFollowerUseCase(sqlServerFollowRepository, usersRepository);
+const findOneFollowerController = new FindOneFollowerController_1.FindOneFollowerController(findOneFollowerUseCase);
+exports.findOneFollowerController = findOneFollowerController;
+const findAllFollowersUseCase = new findAllFollowersUseCase_1.FindAllFollowersUseCase(sqlServerFollowRepository);
+const findAllFollowersController = new FindAllFollowersController_1.FindAllFollowersController(findAllFollowersUseCase);
+exports.findAllFollowersController = findAllFollowersController;
+const unfollowUseCase = new UnfollowUseCase_1.UnfollowUseCase(sqlServerFollowRepository, usersRepository);
+const unfollowController = new UnfollowController_1.UnfollowController(unfollowUseCase);
+exports.unfollowController = unfollowController;
+//# sourceMappingURL=index.js.map

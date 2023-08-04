@@ -17,7 +17,7 @@ const privateKey = (0, crypto_1.createPrivateKey)({
 const authenticate = async (request, response, next) => {
     const authHeader = request.headers.authorization;
     if (!authHeader)
-        return response.status(401).json({ message: "Token not found" });
+        return response.status(404).json({ message: "Token not found" });
     const token = authHeader.split(" ")[1];
     try {
         const payload = await V4.verify(token, privateKey);
