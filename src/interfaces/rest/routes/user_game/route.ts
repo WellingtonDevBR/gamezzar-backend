@@ -5,6 +5,7 @@ import {
   getAllUserGameByUserIdController,
   getAllUserGameController,
   getUserGameByUserIdController,
+  getUserPopularCollectionController,
 } from ".";
 import { SqlServerUserGameRepository } from "../../../../infra/database/sequelize/repositories/user_game/SqlServerUserGameRepository";
 import { convertObjectToSnakeCase } from "../../../../@seedowrk/helper/objectConverter";
@@ -30,6 +31,10 @@ userGameRoutes.get(
     getAllUserGameByUserIdController.handle(request, response);
   }
 );
+
+userGameRoutes.get("/popular", async (request: Request, response: Response) => {
+  getUserPopularCollectionController.handle(request, response);
+});
 
 userGameRoutes.get(
   "/collection/:collectionId",

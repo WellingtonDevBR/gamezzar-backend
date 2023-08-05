@@ -1,8 +1,10 @@
 import { CreateUserGameUseCase } from "../../../../application/use-cases/user_game/create/CreateUserGameUseCase";
+import { GetUserPopularCollectionUseCase } from "../../../../application/use-cases/user_game/getUserPopularCollection/GetUserPopularCollectionUseCase";
 import { GetAllUserGameUseCase } from "../../../../application/use-cases/user_game/get_all/GetAllUserGameUseCase";
 import { GetAllUserGameByUserIdUseCase } from "../../../../application/use-cases/user_game/get_all_by_user_id/GetAllUserGameByUserIdUseCase";
 import { GetUserGameByUserIdUseCase } from "../../../../application/use-cases/user_game/get_by_user_id/GetUserGameByUserIdUseCase";
 import { CreateUserGameController } from "../../../../infra/controllers/user_game/create/CreateUserGameController";
+import { GetUserPopularCollectionController } from "../../../../infra/controllers/user_game/getUserPopularCollection/GetUserPopularCollectionController";
 import { GetAllUserGameController } from "../../../../infra/controllers/user_game/get_all/GetAllUserGameController";
 import { GetAllUserGameByUserIdController } from "../../../../infra/controllers/user_game/get_all_by_user_id/GetAllUserGameByUserIdController";
 import { GetUserGameByUserIdController } from "../../../../infra/controllers/user_game/get_by_user_id/GetUserGameByUserIdController";
@@ -53,9 +55,17 @@ const getAllUserGameByUserIdController = new GetAllUserGameByUserIdController(
   getAllUserGameByUserIdUseCase
 );
 
+// Get Popular COllection
+const getUserPopularCollectionUseCase = new GetUserPopularCollectionUseCase(
+  userGameRepository
+);
+const getUserPopularCollectionController =
+  new GetUserPopularCollectionController(getUserPopularCollectionUseCase);
+
 export {
   createUserGameController,
   getAllUserGameController,
   getUserGameByUserIdController,
   getAllUserGameByUserIdController,
+  getUserPopularCollectionController
 };

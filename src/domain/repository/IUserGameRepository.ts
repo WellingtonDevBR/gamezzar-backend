@@ -4,4 +4,5 @@ export interface IUserGameRepository {
   getAllByUserId(userId: string): Promise<any>;
   getByGameId(gameId: string): Promise<any>;
   getByUserId(userId: string, gameId: string): Promise<any>;
+  getPopularCollectionByUserId(): Promise<any>;
 }

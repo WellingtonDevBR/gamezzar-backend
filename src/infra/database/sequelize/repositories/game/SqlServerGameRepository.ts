@@ -24,10 +24,12 @@ export class SqlServerGameRepository implements IGameRepository {
     });
   }
 
-  async getAll(): Promise<any> {
+  async getAll(offset: number): Promise<any> {
     return await GameModel.findAll({
       raw: true,
       nest: true,
+      offset: offset,
+      limit: 10,
       include: [
         {
           model: EditionModel,
