@@ -8,18 +8,19 @@ class CreateMessageController {
     }
     async handle(request, response) {
         try {
-            const { bidder_id, receiver_id, message, receiver_game_id, is_sender, chat_id } = request.body;
+            const { chat_id, userId, bidder, receiver, message, is_sender, } = request.body;
+            console.log(request.body);
             const result = await this.createMessageUseCase.execute({
-                senderId: is_sender ? receiver_id : bidder_id,
-                receiverId: is_sender ? bidder_id : receiver_id,
+                senderId: is_sender ? receiver.user_id : bidder.user_id,
+                receiverId: is_sender ? bidder.user_id : receiver.user_id,
                 content: message,
-                gameId: receiver_game_id,
+                gameId: receiver.game_id,
             });
             server_1.io.to(`chat-${chat_id}`).emit("newMessage", {
-                sender_id: is_sender ? receiver_id : bidder_id,
-                receiver_id: is_sender ? bidder_id : receiver_id,
+                sender_id: is_sender ? receiver.user_id : bidder.user_id,
+                receiver_id: is_sender ? bidder.user_id : receiver.user_id,
                 content: message,
-                game_id: receiver_game_id,
+                game_id: receiver.game_id,
                 created_at: new Date(),
             });
             return response.status(200).json(result);

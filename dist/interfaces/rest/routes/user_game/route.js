@@ -20,6 +20,9 @@ userGameRoutes.get("/", async (request, response) => {
 userGameRoutes.get("/all", auth_1.authenticate, async (request, response) => {
     _1.getAllUserGameByUserIdController.handle(request, response);
 });
+userGameRoutes.get("/popular", async (request, response) => {
+    _1.getUserPopularCollectionController.handle(request, response);
+});
 userGameRoutes.get("/collection/:collectionId", async (request, response) => {
     const collection = await new SqlServerUserGameRepository_1.SqlServerUserGameRepository().getById(request.params.collectionId);
     const formattedCollection = (0, objectConverter_1.convertObjectToSnakeCase)(collection);

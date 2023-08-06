@@ -30,6 +30,9 @@ userRoutes.post("/register", async (request, response) => {
 userRoutes.post("/follow", auth_1.authenticate, async (request, response) => {
     follow_1.createFollowController.handle(request, response);
 });
+userRoutes.get("/opportunities", auth_1.authenticate, async (request, response) => {
+    _1.getUserOpportunitiesController.handle(request, response);
+});
 userRoutes.get("/follow", auth_1.authenticate, async (request, response) => {
     follow_1.findAllFollowersController.handle(request, response);
 });
@@ -54,11 +57,9 @@ userRoutes.get("/compare-locations/:origin/:destination", async (request, respon
     }, function (err, apiResponse) {
         if (!err) {
             var distance = apiResponse.json.rows[0].elements[0].distance;
-            console.log(distance);
             response.status(200).json({ message: "Success", distance: distance });
         }
         else {
-            console.log(err);
             response.status(500).json({ message: "Error", error: err });
         }
     });

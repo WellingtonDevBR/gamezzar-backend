@@ -1,11 +1,13 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getAllUserGameByUserIdController = exports.getUserGameByUserIdController = exports.getAllUserGameController = exports.createUserGameController = void 0;
+exports.getUserPopularCollectionController = exports.getAllUserGameByUserIdController = exports.getUserGameByUserIdController = exports.getAllUserGameController = exports.createUserGameController = void 0;
 const CreateUserGameUseCase_1 = require("../../../../application/use-cases/user_game/create/CreateUserGameUseCase");
+const GetUserPopularCollectionUseCase_1 = require("../../../../application/use-cases/user_game/getUserPopularCollection/GetUserPopularCollectionUseCase");
 const GetAllUserGameUseCase_1 = require("../../../../application/use-cases/user_game/get_all/GetAllUserGameUseCase");
 const GetAllUserGameByUserIdUseCase_1 = require("../../../../application/use-cases/user_game/get_all_by_user_id/GetAllUserGameByUserIdUseCase");
 const GetUserGameByUserIdUseCase_1 = require("../../../../application/use-cases/user_game/get_by_user_id/GetUserGameByUserIdUseCase");
 const CreateUserGameController_1 = require("../../../../infra/controllers/user_game/create/CreateUserGameController");
+const GetUserPopularCollectionController_1 = require("../../../../infra/controllers/user_game/getUserPopularCollection/GetUserPopularCollectionController");
 const GetAllUserGameController_1 = require("../../../../infra/controllers/user_game/get_all/GetAllUserGameController");
 const GetAllUserGameByUserIdController_1 = require("../../../../infra/controllers/user_game/get_all_by_user_id/GetAllUserGameByUserIdController");
 const GetUserGameByUserIdController_1 = require("../../../../infra/controllers/user_game/get_by_user_id/GetUserGameByUserIdController");
@@ -31,4 +33,7 @@ exports.getUserGameByUserIdController = getUserGameByUserIdController;
 const getAllUserGameByUserIdUseCase = new GetAllUserGameByUserIdUseCase_1.GetAllUserGameByUserIdUseCase(userGameRepository);
 const getAllUserGameByUserIdController = new GetAllUserGameByUserIdController_1.GetAllUserGameByUserIdController(getAllUserGameByUserIdUseCase);
 exports.getAllUserGameByUserIdController = getAllUserGameByUserIdController;
+const getUserPopularCollectionUseCase = new GetUserPopularCollectionUseCase_1.GetUserPopularCollectionUseCase(userGameRepository);
+const getUserPopularCollectionController = new GetUserPopularCollectionController_1.GetUserPopularCollectionController(getUserPopularCollectionUseCase);
+exports.getUserPopularCollectionController = getUserPopularCollectionController;
 //# sourceMappingURL=index.js.map

@@ -8,6 +8,7 @@ const UserGame_1 = require("../../models/UserGame");
 const Game_1 = require("../../models/Game");
 const Region_1 = require("../../models/Region");
 const Platform_1 = require("../../models/Platform");
+const Wishlist_1 = require("../../models/Wishlist");
 class SqlServerUserRepository {
     async save(user) {
         const { id, firstName, lastName, username, avatar, email, password } = user.getAllUserInformation();
@@ -150,6 +151,76 @@ class SqlServerUserRepository {
                 UserID: userId,
             },
         });
+    }
+    async getOpportunities(userId) {
+        const userWishlist = await Wishlist_1.WishlistModel.findAll({
+            raw: true,
+            nest: true,
+            where: { UserId: userId },
+        });
+        const userGames = await UserGame_1.UserGameModel.findAll({
+            raw: true,
+            nest: true,
+            where: { UserId: userId },
+        });
+        const gameIdsInWishlist = userWishlist.map((w) => w.GameId);
+        const gameIdsUserHas = userGames.map((g) => g.GameId);
+        const currentUserDetails = await User_1.UserModel.findOne({
+            raw: true,
+            where: { UserId: userId },
+            attributes: ["UserId"],
+        });
+        const matchingTrades = [];
+        const potentialMatches = await UserGame_1.UserGameModel.findAll({
+            raw: true,
+            nest: true,
+            where: { GameId: gameIdsInWishlist },
+        });
+        for (const match of potentialMatches) {
+            const theirUserDetails = await User_1.UserModel.findOne({
+                raw: true,
+                where: { UserId: match.UserId },
+                attributes: ["FirstName", "LastName", "Avatar"],
+            });
+            const theirWishlist = await Wishlist_1.WishlistModel.findAll({
+                raw: true,
+                nest: true,
+                where: { UserId: match.UserId },
+                include: [
+                    {
+                        model: Game_1.GameModel,
+                        as: "details",
+                        attributes: ["GameId", "Title", "Image"],
+                    },
+                ],
+            });
+            const theirWantedGames = theirWishlist.map((w) => w.details);
+            const theirGames = await UserGame_1.UserGameModel.findAll({
+                raw: true,
+                nest: true,
+                where: { UserId: match.UserId },
+                include: [
+                    {
+                        model: Game_1.GameModel,
+                        as: "item",
+                        attributes: ["GameId", "Title", "Image"],
+                    },
+                ],
+            });
+            const gamesTheyHave = theirGames.map((g) => g.item);
+            const youWantTheyHave = theirWantedGames.filter((game) => gameIdsUserHas.includes(game.GameId));
+            const theyWantYouHave = gamesTheyHave.filter((game) => gameIdsInWishlist.includes(game.GameId));
+            if (youWantTheyHave.length > 0 && theyWantYouHave.length > 0) {
+                matchingTrades.push({
+                    yourDetails: currentUserDetails,
+                    matchUserId: match.UserId,
+                    theirDetails: theirUserDetails,
+                    gamesTheyWant: theyWantYouHave,
+                    gamesYouWant: youWantTheyHave,
+                });
+            }
+        }
+        return matchingTrades;
     }
 }
 exports.SqlServerUserRepository = SqlServerUserRepository;

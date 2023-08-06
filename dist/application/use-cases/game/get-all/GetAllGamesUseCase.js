@@ -7,7 +7,7 @@ class GetAllGamesUseCase {
         this.gameRepository = gameRepository;
     }
     async execute(input) {
-        const games = await this.gameRepository.getAll();
+        const games = await this.gameRepository.getAll(input.offset);
         let convertedGames = (0, objectConverter_1.convertObjectToSnakeCase)(games);
         return convertedGames;
     }

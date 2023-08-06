@@ -6,8 +6,11 @@ class GetAllGamesController {
         this.getAllGamesUseCase = getAllGamesUseCase;
     }
     async handle(request, response) {
+        const { offset } = request.query;
         try {
-            const games = await this.getAllGamesUseCase.execute(request.body);
+            const games = await this.getAllGamesUseCase.execute({
+                offset: Number(offset),
+            });
             return response.status(200).json(games);
         }
         catch (error) {

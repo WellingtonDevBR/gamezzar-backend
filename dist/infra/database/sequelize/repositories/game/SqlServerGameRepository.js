@@ -22,10 +22,12 @@ class SqlServerGameRepository {
             Status: 1,
         });
     }
-    async getAll() {
+    async getAll(offset) {
         return await Game_1.GameModel.findAll({
             raw: true,
             nest: true,
+            offset: offset,
+            limit: 10,
             include: [
                 {
                     model: Edition_1.EditionModel,

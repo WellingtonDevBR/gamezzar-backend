@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getPreferencesByIdController = exports.addPreferenceByIdController = exports.updateDetailsByIdController = exports.getAllUsersController = exports.getUserByUserNameController = exports.getUserController = exports.loginUserController = exports.createUserController = void 0;
+exports.getUserOpportunitiesController = exports.getPreferencesByIdController = exports.addPreferenceByIdController = exports.updateDetailsByIdController = exports.getAllUsersController = exports.getUserByUserNameController = exports.getUserController = exports.loginUserController = exports.createUserController = void 0;
+const UserOpportunitiesUseCase_1 = require("../../../../application/use-cases/user/Opportunities/UserOpportunitiesUseCase");
 const CreateUserUseCase_1 = require("../../../../application/use-cases/user/create/CreateUserUseCase");
 const GetUserUseCase_1 = require("../../../../application/use-cases/user/get/GetUserUseCase");
 const GetUserByUserNameUseCase_1 = require("../../../../application/use-cases/user/getByUserName/GetUserByUserNameUseCase");
@@ -14,6 +15,7 @@ const GetUserController_1 = require("../../../../infra/controllers/user/get/GetU
 const GetUserByUserNameController_1 = require("../../../../infra/controllers/user/getByUserName/GetUserByUserNameController");
 const GetAllUsersController_1 = require("../../../../infra/controllers/user/get_all/GetAllUsersController");
 const LoginUserController_1 = require("../../../../infra/controllers/user/login/LoginUserController");
+const UserOpportunitiesController_1 = require("../../../../infra/controllers/user/opportunities/UserOpportunitiesController");
 const AddPreferenceByIdController_1 = require("../../../../infra/controllers/user/preference/AddPreferenceByIdController");
 const GetPreferencesByIdController_1 = require("../../../../infra/controllers/user/preference/GetPreferencesByIdController");
 const UpdateDetailsByIdController_1 = require("../../../../infra/controllers/user/update/UpdateDetailsByIdController");
@@ -47,4 +49,7 @@ exports.addPreferenceByIdController = addPreferenceByIdController;
 const getPreferencesByIdUseCase = new GetPreferencesByIdUseCase_1.GetPreferencesByIdUseCase(preferenceRepository);
 const getPreferencesByIdController = new GetPreferencesByIdController_1.GetPreferencesByIdController(getPreferencesByIdUseCase);
 exports.getPreferencesByIdController = getPreferencesByIdController;
+const getUserOpportunitiesUseCase = new UserOpportunitiesUseCase_1.UserOpportunitiesUseCase(userRepository);
+const getUserOpportunitiesController = new UserOpportunitiesController_1.UserOpportunitiesController(getUserOpportunitiesUseCase);
+exports.getUserOpportunitiesController = getUserOpportunitiesController;
 //# sourceMappingURL=index.js.map

@@ -192,6 +192,66 @@ class SqlServerUserGameRepository {
         });
         return data;
     }
+    async getPopularCollectionByUserId() {
+        try {
+            const collectionResult = await UserGame_1.UserGameModel.findAll({
+                attributes: [
+                    "UserId",
+                    [
+                        sequelize_1.Sequelize.fn("COUNT", sequelize_1.Sequelize.fn("DISTINCT", sequelize_1.Sequelize.col("GameId"))),
+                        "collectionCount",
+                    ],
+                ],
+                group: ["UserId"],
+                raw: true,
+            });
+            const sortedUsers = collectionResult.sort((a, b) => b.collectionCount - a.collectionCount);
+            const top2Users = sortedUsers.slice(0, 2);
+            const top2UsersWithCollections = await Promise.all(top2Users.map(async (user) => {
+                const userGames = await UserGame_1.UserGameModel.findAll({
+                    where: { UserId: user.UserId },
+                    attributes: ["UserId", "GameId"],
+                    include: [
+                        {
+                            model: Game_1.GameModel,
+                            as: "item",
+                            attributes: ["GameId", "Image", "Title"],
+                        },
+                        {
+                            model: User_1.UserModel,
+                            as: "user",
+                            attributes: ["UserId", "UserName", "Avatar"],
+                        },
+                    ],
+                    limit: 4,
+                    nest: true,
+                    raw: true,
+                });
+                return { userId: user.UserId, userGames };
+            }));
+            const resultArray = [];
+            for (const userWithCollections of top2UsersWithCollections) {
+                const { userId, userGames } = userWithCollections;
+                const gamesForUserId = gatherGamesForUserId(userId, top2UsersWithCollections);
+                const { UserName, Avatar } = userGames[0]?.user;
+                resultArray.push({
+                    UserId: userId,
+                    games: gamesForUserId,
+                    UserName,
+                    Avatar,
+                });
+            }
+            return resultArray;
+        }
+        catch (error) {
+            console.log(error);
+            return [];
+        }
+    }
 }
 exports.SqlServerUserGameRepository = SqlServerUserGameRepository;
+function gatherGamesForUserId(userId, data) {
+    const userGames = data.find((entry) => entry.userId === userId)?.userGames || [];
+    return userGames.map((game) => game.item);
+}
 //# sourceMappingURL=SqlServerUserGameRepository.js.map
