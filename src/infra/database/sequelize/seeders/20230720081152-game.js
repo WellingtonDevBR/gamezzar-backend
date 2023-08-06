@@ -851,6 +851,277 @@ Red Dead Redemption 2, developed by Rockstar Games, is an action-adventure game 
           CreatedAt: new Date(),
           UpdatedAt: new Date(),
         },
+        {
+          GameId: "71a4fd46-7f5c-4849-9d6b-d6e9437ec742",
+          Title: "Death Stranding",
+          Description: `<div>
+          <b>Death Stranding: </b>
+          <span>
+            Death Stranding, created by Hideo Kojima, is a genre-defying experience. The game takes place in a post-apocalyptic United States, where players control Sam Bridges (Norman Reedus) to reconnect isolated communities and create new strands of society.
+          </span>
+          </div>
+          <div>
+          <b>Death Stranding: </b>
+          <span>
+            The game introduces a unique system where death does not mean game over but takes players to an upside-down realm. There they wander before returning, making each death a unique experience. Moreover, it features asynchronous online gameplay, allowing players to help each other without intersecting directly.
+          </span>
+          </div>
+          <div>
+          <b>Death Stranding: </b>
+          <span>
+            With its blend of exploration, survival, and 'strand' gameplay mechanics, along with the deeply woven narrative, Death Stranding presents a one-of-a-kind gaming experience that pushes the boundaries of what a game can be.
+          </span>
+          </div>`,
+          ReleaseDate: new Date("2019-11-08"),
+          Producer: "Kojima Productions",
+          OfficialLink:
+            "https://www.playstation.com/en-us/games/death-stranding/",
+          Image: "death-stranding.jpg",
+          OfficialVideoLink: "https://www.youtube.com/embed/Gu8X7vM3Avw",
+          Slug: "death-stranding",
+          CreatedAt: new Date(),
+          UpdatedAt: new Date(),
+        },
+        {
+          GameId: "54282e79-b49e-4a0b-9175-5b171a9c19b4",
+          Title: "Monster Hunter World",
+          Description: `<div>
+        <b>Monster Hunter World: </b>
+        <span>
+          In Monster Hunter World, developed by Capcom, you enter a world filled with monstrous creatures. As a Hunter, your task is to track and slay these creatures, using the resources from the fallen foes to craft new gear and take on even bigger and badder beasts.
+        </span>
+        </div>
+        <div>
+        <b>Monster Hunter World: </b>
+        <span>
+          Players explore vast and diverse locales, tracking monsters, learning their habits and the ecosystem, and engaging in strategic combat using a variety of weapons and tools. The game also offers co-op play, allowing hunters to team up and take on quests together.
+        </span>
+        </div>
+        <div>
+        <b>Monster Hunter World: </b>
+        <span>
+          With its challenging gameplay, deep mechanics, and immersive world, Monster Hunter World is a game that hooks players with its loop of hunt, craft, and upgrade, providing an engaging and satisfying gaming experience.
+        </span>
+        </div>`,
+          ReleaseDate: new Date("2018-01-26"),
+          Producer: "Capcom",
+          OfficialLink: "http://www.monsterhunterworld.com/",
+          Image: "monster-hunter-world.jpg",
+          OfficialVideoLink: "https://www.youtube.com/embed/roRZxTsEHZ0",
+          Slug: "monster-hunter-world",
+          CreatedAt: new Date(),
+          UpdatedAt: new Date(),
+        },
+        {
+          GameId: "1526ef1c-4b53-49f1-9046-b1ed6a2a8e37",
+          Title: "Nier: Automata",
+          Description: `<div>
+      <b>Nier: Automata: </b>
+      <span>
+        Nier: Automata is a unique blend of action and RPG gameplay styles developed by PlatinumGames. Set in a post-apocalyptic world, players control combat androids from the YoRHa units across an open world environment.
+      </span>
+      </div>
+      <div>
+      <b>Nier: Automata: </b>
+      <span>
+        As players progress, they encounter non-playable characters and engage in challenging combat against a variety of enemies. The game stands out for its unique storytelling, which unfolds through multiple playthroughs, each offering a different perspective on the game's events.
+      </span>
+      </div>
+      <div>
+      <b>Nier: Automata: </b>
+      <span>
+        With its compelling narrative, unique gameplay mechanics, and rich character development, Nier: Automata has garnered a passionate fanbase and high critical acclaim for its innovative take on the action RPG genre.
+      </span>
+      </div>`,
+          ReleaseDate: new Date("2017-02-23"),
+          Producer: "PlatinumGames",
+          OfficialLink: "https://www.platinumgames.com/games/nier-automata",
+          Image: "nier-automata.png",
+          OfficialVideoLink: "https://www.youtube.com/embed/wJxNhJ8fjFk",
+          Slug: "nier-automata",
+          CreatedAt: new Date(),
+          UpdatedAt: new Date(),
+        },
+        {
+          GameId: "a76d8352-5b63-41a5-97fa-7cd05c1419fe",
+          Title: "Final Fantasy VII Remake",
+          Description: `<div>
+          <b>Final Fantasy VII Remake: </b>
+          <span>
+            Final Fantasy VII Remake, developed by Square Enix, is a reimagining of the iconic original game that redefined the RPG genre. This remake offers a fully realized gaming experience, featuring unforgettable characters, a mind-blowing story, and epic battles.
+          </span>
+          </div>
+          <div>
+          <b>Final Fantasy VII Remake: </b>
+          <span>
+            The game tells the story of a mercenary named Cloud Strife and his allies as they attempt to save their world from the corrupt Shinra corporation. The Remake expands on the original game, offering a deeper look at the game's world and characters.
+          </span>
+          </div>
+          <div>
+          <b>Final Fantasy VII Remake: </b>
+          <span>
+            With its visually stunning graphics, highly strategic combat, and deep storytelling, Final Fantasy VII Remake offers both newcomers and long-time fans a deeply engaging and immersive RPG experience.
+          </span>
+          </div>`,
+          ReleaseDate: new Date("2020-04-10"),
+          Producer: "Square Enix",
+          OfficialLink: "https://ffvii-remake.square-enix-games.com/en-us",
+          Image: "final-fantasy-vii-remake.png",
+          OfficialVideoLink: "https://www.youtube.com/embed/Df0YG3qfZ8E",
+          Slug: "final-fantasy-vii-remake",
+          CreatedAt: new Date(),
+          UpdatedAt: new Date(),
+        },
+        {
+          GameId: "678d5edf-8381-467a-8e70-52e73a3fc648",
+          Title: "Resident Evil Village",
+          Description: `<div>
+        <b>Resident Evil Village: </b>
+        <span>
+          Resident Evil Village, developed by Capcom, is the latest installment in the Resident Evil series. Players take on the role of Ethan Winters as they navigate through a village filled with horrific creatures and haunting environments in search of answers.
+        </span>
+        </div>
+        <div>
+        <b>Resident Evil Village: </b>
+        <span>
+          The game features a mix of combat, exploration, and puzzle-solving, delivering a truly terrifying yet deeply engaging survival horror experience. With its impressive graphics and atmospheric environments, players are immersed in a tense and eerie world that keeps them on the edge.
+        </span>
+        </div>
+        <div>
+        <b>Resident Evil Village: </b>
+        <span>
+          Resident Evil Village brilliantly blends horror and action, providing a riveting and pulse-pounding experience that fans of the series and newcomers alike will enjoy.
+        </span>
+        </div>`,
+          ReleaseDate: new Date("2021-05-07"),
+          Producer: "Capcom",
+          OfficialLink: "https://www.residentevil.com/village/",
+          Image: "resident-evil-village.jpg",
+          OfficialVideoLink: "https://www.youtube.com/embed/dRpXEc-EJow",
+          Slug: "resident-evil-village",
+          CreatedAt: new Date(),
+          UpdatedAt: new Date(),
+        },
+        {
+          GameId: "a3a3b691-5478-47b2-9b03-65ce6f3e5862",
+          Title: "Hades",
+          Description: `<div>
+          <b>Hades: </b>
+          <span>
+            Hades, developed by Supergiant Games, is a critically acclaimed roguelike dungeon crawler. Players take on the role of Zagreus, the son of Hades, as they attempt to escape the Underworld, fighting off waves of lost souls and the mighty Olympian gods.
+          </span>
+          </div>
+          <div>
+          <b>Hades: </b>
+          <span>
+            With a unique hack-and-slash combat system, a rich narrative, and stunning hand-drawn art, Hades offers a deep and engaging gaming experience. Each attempt at escape provides a unique experience with ever-changing combinations of weaponry, abilities, and adversaries.
+          </span>
+          </div>
+          <div>
+          <b>Hades: </b>
+          <span>
+            Hades brilliantly combines aspects of roguelike and dungeon crawler genres with a powerful narrative, making it a standout title that keeps players coming back for more.
+          </span>
+          </div>`,
+          ReleaseDate: new Date("2020-09-17"),
+          Producer: "Supergiant Games",
+          OfficialLink: "https://www.supergiantgames.com/games/hades/",
+          Image: "hades.jpg",
+          OfficialVideoLink: "https://www.youtube.com/embed/2eMgQP8sYt4",
+          Slug: "hades",
+          CreatedAt: new Date(),
+          UpdatedAt: new Date(),
+        },
+        {
+          GameId: "883ec3f3-b26b-48e7-80a2-924624d5b8af",
+          Title: "Far Cry 6",
+          Description: `<div>
+          <b>Far Cry 6: </b>
+          <span>
+            Far Cry 6, developed by Ubisoft, is an action-adventure first-person shooter set in Yara, a tropical paradise frozen in time. Players assume the role of Dani Rojas, a local Yaran, as they fight their way across the island to take down the oppressive regime of dictator Antón Castillo.
+          </span>
+          </div>
+          <div>
+          <b>Far Cry 6: </b>
+          <span>
+            The game offers a sprawling sandbox environment that ranges from lush jungles to urban landscapes. With an array of weapons and vehicles at their disposal, players can approach each situation in multiple ways, allowing for a wide variety of gameplay experiences.
+          </span>
+          </div>
+          <div>
+          <b>Far Cry 6: </b>
+          <span>
+            With its vibrant open world, dynamic combat system, and compelling narrative, Far Cry 6 offers an immersive and exciting gaming experience that keeps players engaged from start to finish.
+          </span>
+          </div>`,
+          ReleaseDate: new Date("2021-10-07"),
+          Producer: "Ubisoft",
+          OfficialLink: "https://www.ubisoft.com/en-us/game/far-cry/far-cry-6",
+          Image: "far-cry-6.jpg",
+          OfficialVideoLink: "https://www.youtube.com/embed/-IJuKT1mHO8",
+          Slug: "far-cry-6",
+          CreatedAt: new Date(),
+          UpdatedAt: new Date(),
+        },
+        {
+          GameId: "3b547e64-47b8-4ab5-a2ba-24f63a1eae1d",
+          Title: "Borderlands 3",
+          Description: `<div>
+          <b>Borderlands 3: </b>
+          <span>
+            Borderlands 3, developed by Gearbox Software, is a first-person shooter game known for its vibrant art style, humor and captivating storyline. The game follows a new group of Vault Hunters who are recruited by the Crimson Raiders of Pandora to stop the nefarious Calypso Twins from harnessing the power of the alien Vaults spread across the galaxy.
+          </span>
+          </div>
+          <div>
+          <b>Borderlands 3: </b>
+          <span>
+            The game boasts an extensive variety of weapons, each with unique capabilities and attributes. It also offers deep character customization options and a cooperative multiplayer mode. Players can explore various regions across different planets, each with unique environments and enemies.
+          </span>
+          </div>
+          <div>
+          <b>Borderlands 3: </b>
+          <span>
+            With its high-energy gameplay, rich narrative, and memorable characters, Borderlands 3 offers a thrilling and satisfying gaming experience, maintaining the charm and excitement that fans of the series have come to love.
+          </span>
+          </div>`,
+          ReleaseDate: new Date("2019-09-13"),
+          Producer: "Gearbox Software",
+          OfficialLink: "https://borderlands.com/en-US/",
+          Image: "borderlands-3.jpg",
+          OfficialVideoLink: "https://www.youtube.com/embed/d9Gu1PspA3Y",
+          Slug: "borderlands-3",
+          CreatedAt: new Date(),
+          UpdatedAt: new Date(),
+        },
+        {
+          GameId: "3f1e67bf-8b7f-41c2-838f-34a6b7d9b145",
+          Title: "Detroit: Become Human",
+          Description: `<div>
+          <b>Detroit: Become Human: </b>
+          <span>
+            Detroit: Become Human, developed by Quantic Dream, is an adventure game that explores the theme of android sentience. Set in a dystopian future, the game follows three androids, each with their own stories and dilemmas, as they start to question their programming and seek freedom.
+          </span>
+          </div>
+          <div>
+          <b>Detroit: Become Human: </b>
+          <span>
+            The game is known for its complex narrative structure, where players' choices can drastically alter the story's outcome, leading to multiple endings. The game also offers stunning visuals, impressive character development, and deeply emotional storytelling.
+          </span>
+          </div>
+          <div>
+          <b>Detroit: Become Human: </b>
+          <span>
+            With its deeply immersive narrative, high-stakes decision making, and visually stunning environments, Detroit: Become Human offers players a unique and emotionally engaging gaming experience.
+          </span>
+          </div>`,
+          ReleaseDate: new Date("2018-05-25"),
+          Producer: "Quantic Dream",
+          OfficialLink: "https://www.quanticdream.com/en/detroit-become-human",
+          Image: "detroit-become-human.png",
+          OfficialVideoLink: "https://www.youtube.com/embed/sAmKdZdfV1c",
+          Slug: "detroit-become-human",
+          CreatedAt: new Date(),
+          UpdatedAt: new Date(),
+        },
       ],
       {}
     );

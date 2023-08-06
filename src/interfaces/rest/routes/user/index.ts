@@ -1,3 +1,4 @@
+import { UserOpportunitiesUseCase } from "../../../../application/use-cases/user/Opportunities/UserOpportunitiesUseCase";
 import { CreateUserUseCase } from "../../../../application/use-cases/user/create/CreateUserUseCase";
 import { GetUserUseCase } from "../../../../application/use-cases/user/get/GetUserUseCase";
 import { GetUserByUserNameUseCase } from "../../../../application/use-cases/user/getByUserName/GetUserByUserNameUseCase";
@@ -11,6 +12,7 @@ import { GetUserController } from "../../../../infra/controllers/user/get/GetUse
 import { GetUserByUserNameController } from "../../../../infra/controllers/user/getByUserName/GetUserByUserNameController";
 import { GetAllUsersController } from "../../../../infra/controllers/user/get_all/GetAllUsersController";
 import { LoginUserController } from "../../../../infra/controllers/user/login/LoginUserController";
+import { UserOpportunitiesController } from "../../../../infra/controllers/user/opportunities/UserOpportunitiesController";
 import { AddPreferenceByIdController } from "../../../../infra/controllers/user/preference/AddPreferenceByIdController";
 import { GetPreferencesByIdController } from "../../../../infra/controllers/user/preference/GetPreferencesByIdController";
 import { UpdateDetailsByIdController } from "../../../../infra/controllers/user/update/UpdateDetailsByIdController";
@@ -69,6 +71,14 @@ const getPreferencesByIdController = new GetPreferencesByIdController(
   getPreferencesByIdUseCase
 );
 
+// Get User Opportunities Controller
+const getUserOpportunitiesUseCase = new UserOpportunitiesUseCase(
+  userRepository
+);
+const getUserOpportunitiesController = new UserOpportunitiesController(
+  getUserOpportunitiesUseCase
+);
+
 export {
   createUserController,
   loginUserController,
@@ -77,5 +87,6 @@ export {
   getAllUsersController,
   updateDetailsByIdController,
   addPreferenceByIdController,
-  getPreferencesByIdController
+  getPreferencesByIdController,
+  getUserOpportunitiesController,
 };

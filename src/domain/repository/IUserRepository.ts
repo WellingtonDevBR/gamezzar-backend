@@ -16,4 +16,5 @@ export interface IUserRepository {
   getAll(): Promise<any>;
   add(user: User): Promise<void>;
   update(user: any): Promise<void>;
+  getOpportunities(userId: string): Promise<any>;
 }

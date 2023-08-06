@@ -19,11 +19,13 @@ export class CreateMessageUseCase implements UseCase<Input, Output> {
     private chatRepository: IChatRepository
   ) {}
   async execute(input: Input): Promise<Output> {
+    
     const existingChat = await this.chatRepository.findExistingChat(
       input.senderId,
       input.receiverId,
       input.gameId
     );
+    
     if (existingChat) {
       const messageFactory = MessageFactory.create(
         existingChat.ChatId,

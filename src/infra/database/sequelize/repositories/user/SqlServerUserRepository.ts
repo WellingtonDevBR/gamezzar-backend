@@ -10,6 +10,7 @@ import { UserGameModel } from "../../models/UserGame";
 import { GameModel } from "../../models/Game";
 import { RegionModel } from "../../models/Region";
 import { PlatformModel } from "../../models/Platform";
+import { WishlistModel } from "../../models/Wishlist";
 
 export class SqlServerUserRepository implements IUserRepository {
   async save(user: User): Promise<ICreateUserDataOutput> {
@@ -167,5 +168,91 @@ export class SqlServerUserRepository implements IUserRepository {
         },
       }
     );
+  }
+
+  async getOpportunities(userId: string): Promise<any> {
+    const userWishlist = await WishlistModel.findAll({
+      raw: true,
+      nest: true,
+      where: { UserId: userId },
+    });
+    const userGames = await UserGameModel.findAll({
+      raw: true,
+      nest: true,
+      where: { UserId: userId },
+    });
+
+    const gameIdsInWishlist = userWishlist.map((w: any) => w.GameId);
+    const gameIdsUserHas = userGames.map((g: any) => g.GameId);
+
+    // Fetch current user's details
+    const currentUserDetails = await UserModel.findOne({
+      raw: true,
+      where: { UserId: userId },
+      attributes: ["UserId"],
+    });
+
+    const matchingTrades = [];
+    const potentialMatches = await UserGameModel.findAll({
+      raw: true,
+      nest: true,
+      where: { GameId: gameIdsInWishlist },
+    });
+
+    for (const match of potentialMatches) {
+      // Fetch matching user's details
+      const theirUserDetails = await UserModel.findOne({
+        raw: true,
+        where: { UserId: match.UserId },
+        attributes: ["FirstName", "LastName", "Avatar"],
+      });
+
+      const theirWishlist = await WishlistModel.findAll({
+        raw: true,
+        nest: true,
+        where: { UserId: match.UserId },
+        include: [
+          {
+            model: GameModel,
+            as: "details",
+            attributes: ["GameId", "Title", "Image"],
+          },
+        ],
+      });
+      const theirWantedGames = theirWishlist.map((w: any) => w.details);
+
+      const theirGames = await UserGameModel.findAll({
+        raw: true,
+        nest: true,
+        where: { UserId: match.UserId },
+        include: [
+          {
+            model: GameModel,
+            as: "item",
+            attributes: ["GameId", "Title", "Image"],
+          },
+        ],
+      });
+      const gamesTheyHave = theirGames.map((g: any) => g.item);
+
+      // Find common wants and haves
+      const youWantTheyHave = theirWantedGames.filter((game: any) =>
+        gameIdsUserHas.includes(game.GameId)
+      );
+      const theyWantYouHave = gamesTheyHave.filter((game: any) =>
+        gameIdsInWishlist.includes(game.GameId)
+      );
+
+      if (youWantTheyHave.length > 0 && theyWantYouHave.length > 0) {
+        matchingTrades.push({
+          yourDetails: currentUserDetails,
+          matchUserId: match.UserId,
+          theirDetails: theirUserDetails,
+          gamesTheyWant: theyWantYouHave,
+          gamesYouWant: youWantTheyHave,
+        });
+      }
+    }
+    return matchingTrades;
   }
 }

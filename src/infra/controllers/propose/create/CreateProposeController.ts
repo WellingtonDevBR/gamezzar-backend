@@ -14,14 +14,13 @@ export class CreateProposeController {
       status,
     } = request.body;
 
-    console.log(request.body)
     try {
       const result = await this.createProposeUseCase.execute({
         bidderId: bidder_id ? bidder_id : userId,
         bidderGameId: bidder_game_id,
         receiverId: receiver_id,
         receiverGameId: receiver_game_id,
-        status,
+        status: status,
       });
       return response.status(201).json(result);
     } catch (error) {

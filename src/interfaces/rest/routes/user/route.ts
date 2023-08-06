@@ -8,6 +8,7 @@ import {
   updateDetailsByIdController,
   addPreferenceByIdController,
   getPreferencesByIdController,
+  getUserOpportunitiesController,
 } from ".";
 import { authenticate } from "../../middleware/auth";
 import multer from "multer";
@@ -23,6 +24,10 @@ import {
   findOneFollowerController,
   unfollowController,
 } from "../follow";
+import { WishlistModel } from "../../../../infra/database/sequelize/models/Wishlist";
+import { UserGameModel } from "../../../../infra/database/sequelize/models/UserGame";
+import { UserModel } from "../../../../infra/database/sequelize/models/User";
+import { GameModel } from "../../../../infra/database/sequelize/models/Game";
 require("dotenv").config();
 var googleMapsClient = require("@google/maps").createClient({
   key: "AIzaSyA0N_z3NOgTc8FOeKCAhoWah-GzoExKFDE",
@@ -38,9 +43,21 @@ userRoutes.post("/register", async (request: Request, response: Response) => {
   createUserController.handle(request, response);
 });
 
-userRoutes.post("/follow", authenticate, async (request: Request, response: Response) => {
-  createFollowController.handle(request, response);
-});
+userRoutes.post(
+  "/follow",
+  authenticate,
+  async (request: Request, response: Response) => {
+    createFollowController.handle(request, response);
+  }
+);
+
+userRoutes.get(
+  "/opportunities",
+  authenticate,
+  async (request: Request, response: Response) => {
+    getUserOpportunitiesController.handle(request, response);
+  }
+);
 
 userRoutes.get(
   "/follow",
@@ -58,9 +75,13 @@ userRoutes.get(
   }
 );
 
-userRoutes.delete("/unfollow", authenticate, async (request: Request, response: Response) => {
-  unfollowController.handle(request, response);
-});
+userRoutes.delete(
+  "/unfollow",
+  authenticate,
+  async (request: Request, response: Response) => {
+    unfollowController.handle(request, response);
+  }
+);
 
 userRoutes.get("/:username/feedbacks", async (request, response) => {
   findAllFeedbackByUserNameController.handle(request, response);
@@ -83,10 +104,8 @@ userRoutes.get(
       function (err: any, apiResponse: any) {
         if (!err) {
           var distance = apiResponse.json.rows[0].elements[0].distance;
-          console.log(distance);
           response.status(200).json({ message: "Success", distance: distance });
         } else {
-          console.log(err);
           response.status(500).json({ message: "Error", error: err });
         }
       }
