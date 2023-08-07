@@ -24,10 +24,6 @@ import {
   findOneFollowerController,
   unfollowController,
 } from "../follow";
-import { WishlistModel } from "../../../../infra/database/sequelize/models/Wishlist";
-import { UserGameModel } from "../../../../infra/database/sequelize/models/UserGame";
-import { UserModel } from "../../../../infra/database/sequelize/models/User";
-import { GameModel } from "../../../../infra/database/sequelize/models/Game";
 require("dotenv").config();
 var googleMapsClient = require("@google/maps").createClient({
   key: "AIzaSyA0N_z3NOgTc8FOeKCAhoWah-GzoExKFDE",
