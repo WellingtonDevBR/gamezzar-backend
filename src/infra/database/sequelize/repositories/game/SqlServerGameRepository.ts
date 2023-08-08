@@ -7,6 +7,7 @@ import { UserModel } from "../../models/User";
 import { PlatformModel } from "../../models/Platform";
 import { RegionModel } from "../../models/Region";
 import { EditionModel } from "../../models/Edition";
+import { WishlistModel } from "../../models/Wishlist";
 
 export class SqlServerGameRepository implements IGameRepository {
   async create(game: Game): Promise<any> {
@@ -76,6 +77,31 @@ export class SqlServerGameRepository implements IGameRepository {
         },
       },
       limit: 5,
+    });
+  }
+
+  async getAllInterestedUsers(gameId: string): Promise<any> {
+    return await GameModel.findAll({
+      raw: true,
+      nest: true,
+      where: { GameId: gameId },
+      attributes: [],
+      include: [
+        {
+          model: UserModel,
+          as: "user",
+          required: true,
+          attributes: ["UserName", "Avatar"],
+          include: [
+            {
+              model: WishlistModel,
+              as: "wishlist",
+              attributes: ["WishlistId", "InterestLevel"],
+              required: true,
+            },
+          ],
+        },
+      ],
     });
   }
 }

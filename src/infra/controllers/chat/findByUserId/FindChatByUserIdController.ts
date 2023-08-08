@@ -4,6 +4,7 @@ import { FindChatByUserIdUseCase } from "../../../../application/use-cases/chat/
 export class FindChatByUserIdController {
   constructor(private findChatByUserIdUseCase: FindChatByUserIdUseCase) {}
   async handle(request: Request, response: Response): Promise<Response> {
+    console.log(request)
     try {
       const { userId } = request.body;
       const chats = await this.findChatByUserIdUseCase.execute({ userId });

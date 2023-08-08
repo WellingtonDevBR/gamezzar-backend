@@ -57,26 +57,19 @@ async function startServer() {
     app.use("/api/feedback", feedbackRoutes);
     app.use("/api/listing", listingRoutes);
 
-    // Create HTTP server and wrap Express app
     const httpServer = https.createServer(credentials, app);
 
-    // Create Socket.IO server
     io = new Server(httpServer, {
-      // Use 'io' here
-      // Optional: additional Socket.IO options here
       cors: {
-        origin: "*", // Update this to match your client-side domain
+        origin: "*", 
         methods: ["GET", "POST"],
       },
     });
 
     io.on("connection", (socket: any) => {
-      // The client will send the user ID in the query parameter, access it with socket.handshake.query
       const chatId = socket.handshake.query.chat_id;
-      // Attach the user ID to the socket
       socket.chatId = chatId;
 
-      // Join the user to a room specific to them
       socket.join(`chat-${chatId}`);
 
       socket.on("disconnect", () => {
@@ -89,16 +82,6 @@ async function startServer() {
       // Use the port where you want to expose both HTTPS and WebSockets
       console.log(`Server is running at https://localhost:${secrets.PORT}`);
     });
-
-    // httpServer.listen(secrets.PORT, () => {
-    //   console.log(
-    //     `WebSocket server is running at https://localhost:${secrets.PORT}`
-    //   );
-    // });
-
-    // app.listen(secrets.PORT, () => {
-    //   console.log(`HTTP server is running at http://localhost:${secrets.PORT}`);
-    // });
   } catch (error) {
     console.error("Failed to start server:", error);
   }

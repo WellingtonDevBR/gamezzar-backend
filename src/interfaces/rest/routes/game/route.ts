@@ -2,6 +2,7 @@ import express, { Request, Response } from "express";
 import {
   createGameController,
   getAllGamesController,
+  getAllInterestedUsersController,
   getGameByIdController,
   searchGameByNameController,
 } from ".";
@@ -24,6 +25,10 @@ gamesRoutes.get("/get-all", async (request: Request, response: Response) => {
 
 gamesRoutes.get("/search/", async (request: Request, response: Response) => {
   searchGameByNameController.handle(request, response);
+});
+
+gamesRoutes.get("/:gameId/wishlist-users", async (request: Request, response: Response) => {
+  getAllInterestedUsersController.handle(request, response);
 });
 
 gamesRoutes.get("/:id", async (request: Request, response: Response) => {

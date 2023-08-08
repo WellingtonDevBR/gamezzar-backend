@@ -62,7 +62,6 @@ export class DynamoDbChatRepository implements IChatRepository {
     user2Id: string,
     gameId: string
   ): Promise<Chat | null> {
-    // Scan the entire table
     const params: DocumentClient.ScanInput = {
       TableName: this.tableName,
       FilterExpression:

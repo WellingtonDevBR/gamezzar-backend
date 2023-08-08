@@ -5,4 +5,5 @@ export interface IGameRepository {
   getAll(offset: number): Promise<any>;
   getById(gameId: string): Promise<any>;
   searchByName(name: string): Promise<any>;
+  getAllInterestedUsers(gameId: string): Promise<any>;
 }

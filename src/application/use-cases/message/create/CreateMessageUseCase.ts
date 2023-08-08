@@ -11,7 +11,9 @@ export interface Input {
   content: string;
   gameId: string;
 }
-export interface Output {}
+export interface Output {
+  chat_id: string;
+}
 
 export class CreateMessageUseCase implements UseCase<Input, Output> {
   constructor(
@@ -19,13 +21,13 @@ export class CreateMessageUseCase implements UseCase<Input, Output> {
     private chatRepository: IChatRepository
   ) {}
   async execute(input: Input): Promise<Output> {
-    
     const existingChat = await this.chatRepository.findExistingChat(
       input.senderId,
       input.receiverId,
       input.gameId
     );
     
+
     if (existingChat) {
       const messageFactory = MessageFactory.create(
         existingChat.ChatId,
@@ -33,9 +35,10 @@ export class CreateMessageUseCase implements UseCase<Input, Output> {
         input.receiverId,
         input.content
       );
-      const message = await this.messageRepository.save(messageFactory);
-      const formattedMessage = convertObjectToSnakeCase(message);
-      return formattedMessage;
+      await this.messageRepository.save(messageFactory);
+      return {
+        chat_id: existingChat.ChatId,
+      };
     }
 
     const chatFactory = ChatFactory.create(
@@ -52,6 +55,8 @@ export class CreateMessageUseCase implements UseCase<Input, Output> {
     );
     const message = this.messageRepository.save(messageFactory);
     const formattedMessage = convertObjectToSnakeCase(message);
-    return formattedMessage;
+    return {
+      chat_id: chatFactory.getId(),
+    };
   }
 }
