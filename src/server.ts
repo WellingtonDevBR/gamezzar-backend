@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import http from "http";
+import https from "https";
 import { Server } from "socket.io";
 import { userRoutes } from "./interfaces/rest/routes/user/route";
 import { sequelize } from "./infra/database/sequelize";
@@ -14,6 +15,21 @@ import { chatRoutes } from "./interfaces/rest/routes/chat/route";
 import { transactionRoutes } from "./interfaces/rest/routes/transaction/routes";
 import { feedbackRoutes } from "./interfaces/rest/routes/feedback/route";
 import { listingRoutes } from "./interfaces/rest/routes/listing/routes";
+import path from "path";
+import fs from "fs";
+
+const certificate = fs.readFileSync(path.join(__dirname, "./cert.pem"), "utf8");
+const privateKey = fs.readFileSync(
+  path.join(__dirname, "./privkey.pem"),
+  "utf8"
+);
+const ca = fs.readFileSync(path.join(__dirname, "./fullchain.pem"), "utf8");
+
+const credentials = {
+  key: privateKey,
+  cert: certificate,
+  ca: ca,
+};
 
 let io: Server; // Add this line
 
@@ -42,7 +58,7 @@ async function startServer() {
     app.use("/api/listing", listingRoutes);
 
     // Create HTTP server and wrap Express app
-    const httpServer = http.createServer(app);
+    const httpServer = https.createServer(credentials, app);
 
     // Create Socket.IO server
     io = new Server(httpServer, {
@@ -69,15 +85,20 @@ async function startServer() {
     });
 
     // Start the server
-    httpServer.listen(secrets.SOCKET_PORT, () => {
-      console.log(
-        `WebSocket server is running at http://localhost:${secrets.SOCKET_PORT}`
-      );
+    httpServer.listen(secrets.PORT, () => {
+      // Use the port where you want to expose both HTTPS and WebSockets
+      console.log(`Server is running at https://localhost:${secrets.PORT}`);
     });
 
-    app.listen(secrets.PORT, () => {
-      console.log(`HTTP server is running at http://localhost:${secrets.PORT}`);
-    });
+    // httpServer.listen(secrets.PORT, () => {
+    //   console.log(
+    //     `WebSocket server is running at https://localhost:${secrets.PORT}`
+    //   );
+    // });
+
+    // app.listen(secrets.PORT, () => {
+    //   console.log(`HTTP server is running at http://localhost:${secrets.PORT}`);
+    // });
   } catch (error) {
     console.error("Failed to start server:", error);
   }

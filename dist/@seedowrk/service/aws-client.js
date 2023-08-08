@@ -15,6 +15,9 @@ class AwsClient {
         this.secretsManager = new aws_sdk_1.default.SecretsManager({
             region: "us-east-2",
         });
+        this.lambda = new aws_sdk_1.default.Lambda({
+            region: "us-east-2",
+        });
     }
     async fetchSecrets(secretName) {
         try {
@@ -52,6 +55,49 @@ class AwsClient {
             Key: key,
         };
         return await this.s3.getObject(params).promise();
+    }
+    async sendWelcomingEmail({ email, firstName, lastName, }) {
+        const params = {
+            FunctionName: "welcome_email_function",
+            InvocationType: "RequestResponse",
+            Payload: JSON.stringify({
+                email: email,
+                first_name: firstName,
+                last_name: lastName,
+            }),
+        };
+        try {
+            const result = await this.lambda.invoke(params).promise();
+            return JSON.parse(result.Payload);
+        }
+        catch (err) {
+            console.error("Error invoking Lambda function:", err);
+            throw err;
+        }
+    }
+    async sendNewTradeEmail({ proposalId, bidderFirstName, bidderGameImg, bidderGameName, receiverEmail, receiverFirstName, receiverGameImg, receiverGameName, }) {
+        const params = {
+            FunctionName: "new_trade_email_function",
+            InvocationType: "RequestResponse",
+            Payload: JSON.stringify({
+                proposal_id: proposalId,
+                bidder_first_name: bidderFirstName,
+                bidder_game_image: bidderGameImg,
+                bidder_game_name: bidderGameName,
+                receiver_email: receiverEmail,
+                receiver_first_name: receiverFirstName,
+                receiver_game_image: receiverGameImg,
+                receiver_game_name: receiverGameName,
+            }),
+        };
+        try {
+            const result = await this.lambda.invoke(params).promise();
+            return JSON.parse(result.Payload);
+        }
+        catch (err) {
+            console.error("Error invoking Lambda function:", err);
+            throw err;
+        }
     }
 }
 exports.AwsClient = AwsClient;
