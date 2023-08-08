@@ -16,7 +16,6 @@ export class SqlServerProposeRepository implements IProposeRepository {
         ReceiverGameId: propose.receiverGameId,
       },
     }).then(function (obj) {
-      console.log(`TEST FOUND`, obj)
       if (obj)
         return obj.update({
           Status: propose.status,

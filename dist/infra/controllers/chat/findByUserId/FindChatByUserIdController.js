@@ -6,6 +6,7 @@ class FindChatByUserIdController {
         this.findChatByUserIdUseCase = findChatByUserIdUseCase;
     }
     async handle(request, response) {
+        console.log(request);
         try {
             const { userId } = request.body;
             const chats = await this.findChatByUserIdUseCase.execute({ userId });

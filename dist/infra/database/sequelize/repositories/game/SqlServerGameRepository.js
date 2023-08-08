@@ -8,6 +8,7 @@ const User_1 = require("../../models/User");
 const Platform_1 = require("../../models/Platform");
 const Region_1 = require("../../models/Region");
 const Edition_1 = require("../../models/Edition");
+const Wishlist_1 = require("../../models/Wishlist");
 class SqlServerGameRepository {
     async create(game) {
         const data = game.getAllUserInformation();
@@ -72,6 +73,30 @@ class SqlServerGameRepository {
                 },
             },
             limit: 5,
+        });
+    }
+    async getAllInterestedUsers(gameId) {
+        return await Game_1.GameModel.findAll({
+            raw: true,
+            nest: true,
+            where: { GameId: gameId },
+            attributes: [],
+            include: [
+                {
+                    model: User_1.UserModel,
+                    as: "user",
+                    required: true,
+                    attributes: ["UserName", "Avatar"],
+                    include: [
+                        {
+                            model: Wishlist_1.WishlistModel,
+                            as: "wishlist",
+                            attributes: ["WishlistId", "InterestLevel"],
+                            required: true,
+                        },
+                    ],
+                },
+            ],
         });
     }
 }

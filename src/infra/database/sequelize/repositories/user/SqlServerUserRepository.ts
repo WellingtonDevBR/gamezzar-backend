@@ -81,59 +81,55 @@ export class SqlServerUserRepository implements IUserRepository {
   }
 
   async getByUserName(name: string): Promise<any> {
-    try {
-      const user = await UserModel.findOne({
-        where: {
-          UserName: name,
+    const user = await UserModel.findOne({
+      where: {
+        UserName: name,
+      },
+      attributes: [
+        "UserId",
+        "FirstName",
+        "LastName",
+        "UserName",
+        "Avatar",
+        "CreatedAt",
+      ],
+      include: [
+        {
+          model: PreferenceModel,
+          as: "preference",
+          attributes: [
+            "StatusMessage",
+            "ShipmentInPerson",
+            "ShipmentPostal",
+            "ShipmentCourier",
+          ],
         },
-        attributes: [
-          "UserId",
-          "FirstName",
-          "LastName",
-          "UserName",
-          "Avatar",
-          "CreatedAt",
-        ],
-        include: [
-          {
-            model: PreferenceModel,
-            as: "preference",
-            attributes: [
-              "StatusMessage",
-              "ShipmentInPerson",
-              "ShipmentPostal",
-              "ShipmentCourier",
-            ],
-          },
-          {
-            model: AddressModel,
-            as: "address",
-            attributes: ["Address"],
-          },
-          {
-            model: UserGameModel,
-            as: "collections",
-            include: [
-              {
-                model: GameModel,
-                as: "item",
-              },
-              {
-                model: RegionModel,
-                as: "hasregion",
-              },
-              {
-                model: PlatformModel,
-                as: "hasplatform",
-              },
-            ],
-          },
-        ],
-      });
-      return user;
-    } catch (error) {
-      console.log(error);
-    }
+        {
+          model: AddressModel,
+          as: "address",
+          attributes: ["Address"],
+        },
+        {
+          model: UserGameModel,
+          as: "collections",
+          include: [
+            {
+              model: GameModel,
+              as: "item",
+            },
+            {
+              model: RegionModel,
+              as: "hasregion",
+            },
+            {
+              model: PlatformModel,
+              as: "hasplatform",
+            },
+          ],
+        },
+      ],
+    });
+    return user;
   }
 
   async add(user: User): Promise<void> {

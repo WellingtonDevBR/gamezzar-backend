@@ -19,6 +19,9 @@ gamesRoutes.get("/get-all", async (request, response) => {
 gamesRoutes.get("/search/", async (request, response) => {
     _1.searchGameByNameController.handle(request, response);
 });
+gamesRoutes.get("/:gameId/wishlist-users", async (request, response) => {
+    _1.getAllInterestedUsersController.handle(request, response);
+});
 gamesRoutes.get("/:id", async (request, response) => {
     _1.getGameByIdController.handle(request, response);
 });

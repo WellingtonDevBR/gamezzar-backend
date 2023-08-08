@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.searchGameByNameController = exports.getGameByIdController = exports.getAllGamesController = exports.createGameController = void 0;
+exports.getAllInterestedUsersController = exports.searchGameByNameController = exports.getGameByIdController = exports.getAllGamesController = exports.createGameController = void 0;
 const imageConverter_1 = require("../../../../@seedowrk/helper/imageConverter");
 const CreateGameUseCase_1 = require("../../../../application/use-cases/game/create/CreateGameUseCase");
 const GetAllGamesUseCase_1 = require("../../../../application/use-cases/game/get-all/GetAllGamesUseCase");
@@ -12,6 +12,8 @@ const SqlServerGameRepository_1 = require("../../../../infra/database/sequelize/
 const SqlServerUserGameRepository_1 = require("../../../../infra/database/sequelize/repositories/user_game/SqlServerUserGameRepository");
 const SearchGameByNameUseCase_1 = require("../../../../application/use-cases/game/searchByName/SearchGameByNameUseCase");
 const SearchGameByNameController_1 = require("../../../../infra/controllers/game/searchByName/SearchGameByNameController");
+const GetAllInterestedUsersUseCase_1 = require("../../../../application/use-cases/game/getInterstedUsers/GetAllInterestedUsersUseCase");
+const GetAllInterestedUsersController_1 = require("../../../../infra/controllers/game/getInterestedUsers/GetAllInterestedUsersController");
 const sqlServerGameRepository = new SqlServerGameRepository_1.SqlServerGameRepository();
 const sqlServerUserGameRepository = new SqlServerUserGameRepository_1.SqlServerUserGameRepository();
 const imageToSvgConverter = new imageConverter_1.ImageToPngConverter();
@@ -27,4 +29,7 @@ exports.getGameByIdController = getGameByIdController;
 const searchGameByNameUseCase = new SearchGameByNameUseCase_1.SearchGameByNameUseCase(sqlServerGameRepository);
 const searchGameByNameController = new SearchGameByNameController_1.SearchGameByNameController(searchGameByNameUseCase);
 exports.searchGameByNameController = searchGameByNameController;
+const getAllInterestedUsersUseCase = new GetAllInterestedUsersUseCase_1.GetAllInterestedUsersUseCase(sqlServerGameRepository);
+const getAllInterestedUsersController = new GetAllInterestedUsersController_1.GetAllInterestedUsersController(getAllInterestedUsersUseCase);
+exports.getAllInterestedUsersController = getAllInterestedUsersController;
 //# sourceMappingURL=index.js.map

@@ -13,16 +13,19 @@ class CreateMessageUseCase {
         const existingChat = await this.chatRepository.findExistingChat(input.senderId, input.receiverId, input.gameId);
         if (existingChat) {
             const messageFactory = MessageFactory_1.MessageFactory.create(existingChat.ChatId, input.senderId, input.receiverId, input.content);
-            const message = await this.messageRepository.save(messageFactory);
-            const formattedMessage = (0, objectConverter_1.convertObjectToSnakeCase)(message);
-            return formattedMessage;
+            await this.messageRepository.save(messageFactory);
+            return {
+                chat_id: existingChat.ChatId,
+            };
         }
         const chatFactory = ChatFactory_1.ChatFactory.create(input.senderId, input.receiverId, input.gameId);
         const chat = await this.chatRepository.save(chatFactory);
         const messageFactory = MessageFactory_1.MessageFactory.create(chat.chatId, input.senderId, input.receiverId, input.content);
         const message = this.messageRepository.save(messageFactory);
         const formattedMessage = (0, objectConverter_1.convertObjectToSnakeCase)(message);
-        return formattedMessage;
+        return {
+            chat_id: chatFactory.getId(),
+        };
     }
 }
 exports.CreateMessageUseCase = CreateMessageUseCase;
